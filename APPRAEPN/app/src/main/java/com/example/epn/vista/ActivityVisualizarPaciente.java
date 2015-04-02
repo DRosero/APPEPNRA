@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.example.epn.appraepn.R;
+import com.example.epn.basehelper.BaseHelper;
 import com.example.epn.modelo.entidades.Paciente;
 import com.example.epn.modelo.servicios.ServiciosPaciente;
 import java.util.List;
@@ -25,6 +26,7 @@ public class ActivityVisualizarPaciente extends Activity {
     private ServiciosPaciente serviciosPaciente;
     private ListView lstpaciente;
     private Paciente pacienteRecuperado;
+    BaseHelper baseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class ActivityVisualizarPaciente extends Activity {
         lstpaciente = (ListView) findViewById(R.id.Lstpaciente);
 
         extras = new Bundle();
-        serviciosPaciente = new ServiciosPaciente(this);
+        serviciosPaciente = new ServiciosPaciente();
         registerForContextMenu(lstpaciente);
         lstpaciente.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -77,10 +79,10 @@ public class ActivityVisualizarPaciente extends Activity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                serviciosPaciente.abrir();
+                baseHelper.getWritableDatabase();
                 serviciosPaciente.eliminar(paciente);
                 Toast.makeText(getApplicationContext(),"Registro Eliminado", Toast.LENGTH_SHORT).show();
-                serviciosPaciente.cerrar();
+                baseHelper.close();
                 llenarListView();
             }
         });
@@ -95,11 +97,11 @@ public class ActivityVisualizarPaciente extends Activity {
     }
 
     public void llenarListView(){
-        serviciosPaciente.abrir();
+        baseHelper.getWritableDatabase();
         List<Paciente>paciente=serviciosPaciente.recuperarTodos();
         ArrayAdapter<Paciente>adapter=new ArrayAdapter<Paciente>(this,android.R.layout.simple_list_item_1,paciente);
         lstpaciente.setAdapter(adapter);
-        serviciosPaciente.cerrar();
+        baseHelper.close();
     }
 
 

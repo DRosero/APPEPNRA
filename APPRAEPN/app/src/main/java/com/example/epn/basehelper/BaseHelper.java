@@ -34,4 +34,5 @@ public class BaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS PACIENTE");
         onCreate(db);
     }
+
 }

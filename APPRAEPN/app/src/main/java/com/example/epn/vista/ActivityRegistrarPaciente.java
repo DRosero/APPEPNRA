@@ -33,13 +33,20 @@ public class ActivityRegistrarPaciente extends Activity {
         txtnombre = (EditText) findViewById(R.id.TxtNombre);
         txtapellido = (EditText) findViewById(R.id.TxtApellido);
         txtdireccion = (EditText) findViewById(R.id.Txtdireccion);
-
     }
 
     public void irAGuardar(View view){
         try {
+            Toast.makeText(getApplicationContext(),"nombre"+txtnombre.getText().toString(),Toast.LENGTH_SHORT).show();
+            System.out.println("apellido"+txtapellido.getText().toString());
+            System.out.println("direccion"+txtdireccion.getText().toString());
+
+            //Toast.makeText(getApplicationContext(),"nombre"+txtapellido.getText().toString(),Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),"nombre"+txtdireccion.getText().toString(),Toast.LENGTH_SHORT).show();
             controladorPaciente.irGuardar(txtnombre.getText().toString(), txtapellido.getText().toString(), txtdireccion.getText().toString());
-        } catch (Exception e) {
+        }
+
+        catch (Exception e) {
             Toast.makeText(getApplicationContext(), "esta en el catch", Toast.LENGTH_SHORT).show();
         }
 
@@ -50,3 +57,5 @@ public class ActivityRegistrarPaciente extends Activity {
 
 
 }
+
+
