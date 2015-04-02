@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.epn.appraepn.R;
 import com.example.epn.modelo.entidades.Paciente;
 import com.example.epn.modelo.servicios.ServiciosPaciente;
@@ -53,12 +52,7 @@ public class ActivityRegistrarPaciente extends Activity {
         txtnombre.setText("");
         txtapellido.setText("");
         txtdireccion.setText("");
-
-
     }
-
-
-
 
 
 }
