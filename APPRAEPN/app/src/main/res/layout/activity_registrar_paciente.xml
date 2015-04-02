@@ -52,6 +52,6 @@
         android:layout_height="wrap_content"
         android:text="Guardar"
         android:id="@+id/BtnGuardar"
-        android:onClick="irGuardar"/>
+        android:onClick="irAGuardar"/>
 
 </LinearLayout>
