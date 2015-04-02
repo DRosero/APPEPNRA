@@ -1,14 +1,25 @@
 package com.example.epn;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.epn.appraepn.R;
+import com.example.epn.vista.ActivityRegistrarPaciente;
+import com.example.epn.vista.ActivityVisualizarPaciente;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    private Button btnRegistrarDatosPaciente;
+    private Button btnRegistrarDatosResponsable;
+    private Button btnRegistrarSitios;
+    private Button btnDesplegarMapaSitios;
+    private Button btnEstablecerPrioridades;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,5 +48,35 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void irVisualizarPaciente (View vista){
+        Intent intent = new Intent(this, ActivityVisualizarPaciente.class);
+        startActivity(intent);
+    }
+/*
+    public void irRegistrarDatosResponsable (View vista){
+        Intent intent = new Intent(this, RegistrarDatosResponsables.class);
+        startActivity(intent);
+    }
+
+    public void irRegistrarSitios (View vista){
+        Intent intent=new Intent(this,RegistrarSitios.class);
+        startActivity(intent);
+    }
+
+    public void irDesplegarMapaSitios (View vista){
+        Intent intent = new Intent(this, DesplegarSitios.class);
+        startActivity(intent);
+    }
+
+    public void irEstablecerPrioridades (View vista){
+        Intent intent = new Intent(this, EstablecerPrioridades.class);
+        startActivity(intent);
+    }
+*/
+    public void irSalir (){
+        System.exit(0);
     }
 }

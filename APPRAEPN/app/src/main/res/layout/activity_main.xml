@@ -5,7 +5,76 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Sistema de Ayuda para Personas con Discapacidad Mental Leve"
+        android:id="@+id/lblAplicacion"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:autoText="false"
+        android:capitalize="words" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registrar Datos de Paciente"
+        android:id="@+id/btnDatosPaciente"
+        android:layout_below="@+id/lblAplicacion"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/lblAplicacion"
+        android:onClick="irVisualizarPaciente"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registrar Datos de Responsables de Paciente"
+        android:id="@+id/btnDatosResponsable"
+        android:layout_below="@+id/btnDatosPaciente"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="irRegistrarDatosResponsable"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Establecer Prioridades de Responsables"
+        android:id="@+id/btnEstablecerprioridades"
+        android:layout_below="@+id/btnDatosResponsable"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="irEstablecerPrioridades"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registrar Sitios"
+        android:id="@+id/btnSitios"
+        android:layout_below="@+id/btnEstablecerprioridades"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="irRegistrarSitios"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Desplegar Mapa de Sitios Registrados"
+        android:id="@+id/btnMapaSitios"
+        android:layout_below="@+id/btnSitios"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="irDesplegarMapaSitios"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salir"
+        android:id="@+id/btnSalir"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="99dp"
+        android:onClick="irSalir"/>
+
 
 </RelativeLayout>
