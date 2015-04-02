@@ -8,11 +8,11 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.epn.controlador.MainActivity"
+            android:name="com.example.epn.MainActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.epn.controlador.ActivityRegistrarPaciente"
+            android:name="com.example.epn.vista.ActivityRegistrarPaciente"
             android:label="@string/app_name" >
 
 
@@ -21,7 +21,7 @@
 
         </activity>
         <activity
-            android:name="com.example.epn.controlador.ActivityVisualizarPaciente"
+            android:name="com.example.epn.vista.ActivityVisualizarPaciente"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

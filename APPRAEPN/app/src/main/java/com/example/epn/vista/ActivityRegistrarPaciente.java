@@ -1,4 +1,4 @@
-package com.example.epn.controlador;
+package com.example.epn.vista;
 
 import android.app.Activity;
 import android.os.Bundle;
