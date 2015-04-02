@@ -1,4 +1,4 @@
-package com.example.epn.entidades;
+package com.example.epn.modelo.entidades;
 
 import java.io.Serializable;
 

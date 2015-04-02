@@ -1,4 +1,4 @@
-package com.example.epn.servicios;
+package com.example.epn.modelo.servicios;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,10 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.epn.basehelper.BaseHelper;
-import com.example.epn.entidades.Paciente;
+import com.example.epn.modelo.entidades.Paciente;
 
 import java.util.ArrayList;
-import java.util.Currency;
 import java.util.List;
 
 /**

@@ -1,4 +1,4 @@
-package com.example.epn.paciente;
+package com.example.epn.controlador;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,8 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.example.epn.appraepn.R;
-import com.example.epn.entidades.Paciente;
-import com.example.epn.servicios.ServiciosPaciente;
+import com.example.epn.modelo.entidades.Paciente;
+import com.example.epn.modelo.servicios.ServiciosPaciente;
 import java.util.List;
 
 /**

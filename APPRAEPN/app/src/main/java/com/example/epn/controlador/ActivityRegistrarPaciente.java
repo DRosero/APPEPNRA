@@ -1,4 +1,4 @@
-package com.example.epn.paciente;
+package com.example.epn.controlador;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.epn.appraepn.R;
-import com.example.epn.entidades.Paciente;
-import com.example.epn.servicios.ServiciosPaciente;
+import com.example.epn.modelo.entidades.Paciente;
+import com.example.epn.modelo.servicios.ServiciosPaciente;
 
 /**
  * Created by Diego on 01/04/2015.
