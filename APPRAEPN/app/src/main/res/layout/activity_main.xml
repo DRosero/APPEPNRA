@@ -19,28 +19,29 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrar Datos de Paciente"
+        android:text="Administrar Datos de Paciente"
         android:id="@+id/btnDatosPaciente"
+        android:onClick="irAdministrarPaciente"
         android:layout_below="@+id/lblAplicacion"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/lblAplicacion"
-        android:onClick="irVisualizarPaciente"/>
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="46dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrar Datos de Responsables de Paciente"
+        android:text="Administrar Responsables"
         android:id="@+id/btnDatosResponsable"
         android:layout_below="@+id/btnDatosPaciente"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:onClick="irRegistrarDatosResponsable"/>
+        android:onClick="irAdministrarResponsable"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Establecer Prioridades de Responsables"
-        android:id="@+id/btnEstablecerprioridades"
+        android:id="@+id/btnEstablecerPrioridades"
         android:layout_below="@+id/btnDatosResponsable"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
@@ -49,22 +50,41 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrar Sitios"
-        android:id="@+id/btnSitios"
-        android:layout_below="@+id/btnEstablecerprioridades"
+        android:text="Establecer Sitio Central"
+        android:id="@+id/btnSitioCentral"
+        android:layout_below="@+id/btnEstablecerPrioridades"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:onClick="irRegistrarSitios"/>
+        android:onClick="irEstablecerSitioCentral"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Desplegar Mapa de Sitios Registrados"
-        android:id="@+id/btnMapaSitios"
-        android:layout_below="@+id/btnSitios"
+        android:text="Área de Movimiento Permitido"
+        android:id="@+id/btnAreaMovimientoPermitido"
+        android:layout_below="@+id/btnSitioCentral"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:onClick="irDesplegarMapaSitios"/>
+        android:onClick="irAreaMovimientoPermitido"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Administrar Sitios Conocidos"
+        android:id="@+id/btnAdministrarSitiosConocidos"
+        android:layout_below="@+id/btnAreaMovimientoPermitido"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="irAdministrarSitiosConocidos"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Establecer Intervalo de Envío de Alertas"
+        android:id="@+id/btnEstablecerIntervaloAlertas"
+        android:layout_below="@+id/btnAdministrarSitiosConocidos"
+        android:layout_alignParentStart="true"
+        android:onClick="irEstablecerIntervaloAlertas"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -73,7 +93,6 @@
         android:id="@+id/btnSalir"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="99dp"
         android:onClick="irSalir"/>
 
 

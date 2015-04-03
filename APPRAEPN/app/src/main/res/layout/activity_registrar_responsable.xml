@@ -8,25 +8,26 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textAlignment="center"
-        android:text="Registrar Datos de Paciente"
-        android:id="@+id/lblRegistrarPaciente"
+        android:text="Registrar Datos de Responsable"
+        android:id="@+id/lblRegistrarResponsables"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp" />
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Nombre:"
-        android:id="@+id/textView" />
+        android:id="@+id/lblNombreResp" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/txtNombrePaciente"
+        android:id="@+id/txtNombreResponsable"
         android:layout_gravity="center_horizontal" />
 
     <TextView
@@ -34,29 +35,70 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Apellido"
-        android:id="@+id/textView2" />
+        android:id="@+id/lblApellidoResponsable" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/txtApellidoPaciente" />
-
+        android:id="@+id/txtApellidoResponsable" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Dirección"
-        android:id="@+id/textView3" />
+        android:text="Teléf. Móvil:"
+        android:id="@+id/lblTelefMovil" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/txtTelefonoMovil" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Teléf. Fijo:"
+        android:id="@+id/lblTelefFijo" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/txtTelefonoFijo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Dirección Hogar"
+        android:id="@+id/lblDireccionHogarResponsable" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/txtDireccionPaciente" />
+        android:id="@+id/txtDireccionHogarResponsable" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Dirección Trabajo"
+        android:id="@+id/lblDireccionTrabajoResponsable" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/txtDireccionTrabajoResponsable" />
 
     <Button
         android:layout_width="wrap_content"
@@ -71,5 +113,8 @@
         android:text="Cancelar"
         android:id="@+id/btnCancelar"
         android:onClick="irCancelar" />
+
+
+
 
 </LinearLayout>

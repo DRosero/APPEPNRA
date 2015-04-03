@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAlignment="center"
+        android:text="Administrar Datos de Paciente"
+        android:id="@+id/lblAdministrarDatosPaciente"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lstPaciente"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/btnRegresar"
+        android:layout_below="@+id/lblAdministrarDatosPaciente" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Regresar"
+        android:id="@+id/btnRegresar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/lblAdministrarDatosPaciente"
+        android:onClick="irRegresar"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        android:id="@+id/btnNuevoPaciente"
+        android:layout_below="@+id/lstPaciente"
+        android:layout_alignEnd="@+id/lblAdministrarDatosPaciente"
+        android:onClick="irNuevoPaciente"/>
+
+
+</RelativeLayout>

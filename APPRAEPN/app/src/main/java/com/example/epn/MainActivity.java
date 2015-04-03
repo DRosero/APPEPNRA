@@ -7,19 +7,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.epn.appraepn.R;
-import com.example.epn.vista.ActivityRegistrarPaciente;
-import com.example.epn.vista.ActivityVisualizarPaciente;
+import com.example.epn.vista.ActivityAdministrarPaciente;
+import com.example.epn.vista.ActivityAdministrarResponsable;
+import com.example.epn.vista.ActivityAdministrarSitiosConocidos;
+import com.example.epn.vista.ActivityAreaMovimientoPermitido;
+import com.example.epn.vista.ActivityEstablecerIntervaloAlertas;
+import com.example.epn.vista.ActivityEstablecerPrioridades;
+import com.example.epn.vista.ActivityEstablecerSitioCentral;
 
 
 public class MainActivity extends ActionBarActivity {
-
-    private Button btnRegistrarDatosPaciente;
-    private Button btnRegistrarDatosResponsable;
-    private Button btnRegistrarSitios;
-    private Button btnDesplegarMapaSitios;
-    private Button btnEstablecerPrioridades;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,33 +50,77 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-    public void irVisualizarPaciente (View vista){
-        Intent intent = new Intent(this, ActivityVisualizarPaciente.class);
-        startActivity(intent);
+    public void irAdministrarPaciente (View vista){
+        try {
+            Intent intent = new Intent(this, ActivityAdministrarPaciente.class);
+            startActivity(intent);
+        }
+        catch(Exception e){
+            Toast.makeText(getApplicationContext(),"Error en Main: No se puede abrir este módulo", Toast.LENGTH_SHORT).show();
+        }
     }
-/*
-    public void irRegistrarDatosResponsable (View vista){
-        Intent intent = new Intent(this, RegistrarDatosResponsables.class);
-        startActivity(intent);
-    }
+    public void irAdministrarResponsable (View vista){
+        try {
+            Intent intent = new Intent(this,ActivityAdministrarResponsable.class);
+            startActivity(intent);
+        }
+        catch(Exception e){
+            Toast.makeText(getApplicationContext(),"Error en Main: No se puede abrir este módulo", Toast.LENGTH_SHORT).show();
+        }
 
-    public void irRegistrarSitios (View vista){
-        Intent intent=new Intent(this,RegistrarSitios.class);
-        startActivity(intent);
     }
-
-    public void irDesplegarMapaSitios (View vista){
-        Intent intent = new Intent(this, DesplegarSitios.class);
-        startActivity(intent);
-    }
-
     public void irEstablecerPrioridades (View vista){
-        Intent intent = new Intent(this, EstablecerPrioridades.class);
-        startActivity(intent);
+        try {
+            Intent intent = new Intent(this,ActivityEstablecerPrioridades.class);
+            startActivity(intent);
+        }
+        catch(Exception e){
+            Toast.makeText(getApplicationContext(),"Error en Main: No se puede abrir este módulo", Toast.LENGTH_SHORT).show();
+        }
+
     }
-*/
-    public void irSalir (){
-        System.exit(0);
+    public void irEstablecerSitioCentral (View vista){
+        try {
+            Intent intent = new Intent(this,ActivityEstablecerSitioCentral.class);
+            startActivity(intent);
+        }
+        catch(Exception e){
+            Toast.makeText(getApplicationContext(),"Error en Main: No se puede abrir este módulo", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+    public void irAreaMovimientoPermitido (View vista){
+        try {
+            Intent intent = new Intent(this, ActivityAreaMovimientoPermitido.class);
+            startActivity(intent);
+        }
+        catch(Exception e){
+            Toast.makeText(getApplicationContext(),"Error en Main: No se puede abrir este módulo", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void irAdministrarSitiosConocidos (View vista){
+        try {
+            Intent intent = new Intent(this,ActivityAdministrarSitiosConocidos.class);
+            startActivity(intent);
+        }
+        catch(Exception e){
+            Toast.makeText(getApplicationContext(),"Error en Main: No se puede abrir este módulo", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void irEstablecerIntervaloAlertas (View vista){
+        try {
+
+            Intent intent = new Intent(this, ActivityEstablecerIntervaloAlertas.class);
+            startActivity(intent);
+        }
+        catch(Exception e){
+            Toast.makeText(getApplicationContext(),"Error en Main: No se puede abrir este módulo", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void irSalir (View view){
+        onPause();
+        Toast.makeText(getApplicationContext(),"Aplicación Pausada", Toast.LENGTH_SHORT).show();
+        onStop();
     }
 }

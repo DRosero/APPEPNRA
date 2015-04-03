@@ -1,6 +1,7 @@
 package com.example.epn.vista;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,12 +31,12 @@ public class ActivityRegistrarPaciente extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar_paciente);
         setTitle("Nuevo Registro de Paciente");
-        txtnombre = (EditText) findViewById(R.id.TxtNombre);
-        txtapellido = (EditText) findViewById(R.id.TxtApellido);
-        txtdireccion = (EditText) findViewById(R.id.Txtdireccion);
+        txtnombre = (EditText) findViewById(R.id.txtNombrePaciente);
+        txtapellido = (EditText) findViewById(R.id.txtApellidoPaciente);
+        txtdireccion = (EditText) findViewById(R.id.txtDireccionPaciente);
     }
 
-    public void irAGuardar(View view){
+    public void irGuardar(View view){
         try {
             Toast.makeText(getApplicationContext(),"nombre"+txtnombre.getText().toString(),Toast.LENGTH_SHORT).show();
             System.out.println("apellido"+txtapellido.getText().toString());
@@ -52,7 +53,12 @@ public class ActivityRegistrarPaciente extends Activity {
 
     }
 
-
+    public void irCancelar (View view){
+        onPause();
+        Toast.makeText(getApplicationContext(),"Listando Paciente", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, ActivityAdministrarPaciente.class);
+        startActivity(intent );
+    }
 
 
 
