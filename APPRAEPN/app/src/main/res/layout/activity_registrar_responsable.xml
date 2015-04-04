@@ -103,9 +103,15 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Seleccionar desde Contactos del Equipo"
+        android:id="@+id/btnSeleccionarContacto" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Guardar"
         android:id="@+id/btnGuardar"
-        android:onClick="irGuardar"/>
+        android:onClick="irGuardar" />
 
     <Button
         android:layout_width="wrap_content"
@@ -113,8 +119,6 @@
         android:text="Cancelar"
         android:id="@+id/btnCancelar"
         android:onClick="irCancelar" />
-
-
 
 
 </LinearLayout>
