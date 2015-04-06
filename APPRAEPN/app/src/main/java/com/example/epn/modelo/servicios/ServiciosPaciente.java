@@ -17,17 +17,21 @@ import java.util.List;
 public class ServiciosPaciente<SQLiteDataBase> {
 
     final String TAG="Tesis";
+    BaseHelper baseHelper;
 
     private SQLiteDatabase sqLiteDatabase;
     private String columnas[]={"idpaciente","nombre","apellido","direccion"};
 
-    public ServiciosPaciente(SQLiteDatabase sqLiteDatabase, String[] columnas) {
-        this.sqLiteDatabase = sqLiteDatabase;
-        this.columnas = columnas;
+    public ServiciosPaciente(Context context) {
+        baseHelper=new BaseHelper(context);
     }
 
-    public ServiciosPaciente() {
+    public void abrirBD(){
+        sqLiteDatabase=baseHelper.getWritableDatabase();
+    }
 
+    public void cerrarBD(){
+        baseHelper.close();
     }
 
     public void insertar(Paciente paciente){

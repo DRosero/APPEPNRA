@@ -24,7 +24,6 @@ public class BaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(sentencia);
         //db.execSQL("DROP DATABASE bdtesis");
-
     }
 
     @Override

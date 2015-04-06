@@ -1,6 +1,8 @@
 package com.example.epn.controlador;
 
 import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.epn.basehelper.BaseHelper;
@@ -12,10 +14,19 @@ import com.example.epn.modelo.servicios.ServiciosPaciente;
  */
 public class ControladorPaciente extends Activity{
     ServiciosPaciente serviciosPaciente;
-    BaseHelper baseHelper;
 
+    public ControladorPaciente() {
 
-    public void irGuardar(String nombre,String apellido, String direccion){
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        serviciosPaciente=new ServiciosPaciente(this);
+    }
+
+    public void irGuardar(String nombre,String apellido,String direccion){
+
         Paciente paciente=new Paciente();
 
         paciente.setNombre(nombre);
@@ -23,15 +34,14 @@ public class ControladorPaciente extends Activity{
         paciente.setDireccion(direccion);
 
         try {
-            baseHelper.getWritableDatabase();
+            serviciosPaciente.abrirBD();
             serviciosPaciente.insertar(paciente);
             Toast.makeText(getApplicationContext(), "Paciente Ingresado", Toast.LENGTH_SHORT).show();
-            baseHelper.close();
+            serviciosPaciente.cerrarBD();
         }
         catch (Exception e){
-            baseHelper.close();
+            serviciosPaciente.cerrarBD();
         }
     }
-
 
 }

@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:text="Guardar"
         android:id="@+id/btnGuardar"
-        android:onClick="irGuardar"/>
+        android:onClick="irGuardarP"/>
 
     <Button
         android:layout_width="wrap_content"

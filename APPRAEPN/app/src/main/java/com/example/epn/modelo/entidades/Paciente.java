@@ -12,13 +12,6 @@ public class Paciente implements Serializable {
     private String apellido;
     private String direccion;
 
-    public Paciente(int idpaciente, String nombre, String apellido, String direccion) {
-        this.idpaciente = idpaciente;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.direccion = direccion;
-    }
-
     public Paciente() {
 
     }
