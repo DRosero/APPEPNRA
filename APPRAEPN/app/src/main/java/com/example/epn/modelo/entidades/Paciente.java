@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Diego on 01/04/2015.
  */
-public class Paciente implements Serializable {
+public class Paciente implements Serializable{
 
     private int idpaciente;
     private String nombre;
