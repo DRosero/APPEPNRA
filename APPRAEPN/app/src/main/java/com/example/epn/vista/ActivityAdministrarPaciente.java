@@ -56,10 +56,9 @@ public class ActivityAdministrarPaciente extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_administrar_paciente);
         lstpaciente = (ListView) findViewById(R.id.lstPaciente);
-    }
-/*
+
         extras = new Bundle();
-        serviciosPaciente = new ServiciosPaciente();
+        serviciosPaciente = new ServiciosPaciente(this);
         registerForContextMenu(lstpaciente);
         lstpaciente.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -73,24 +72,29 @@ public class ActivityAdministrarPaciente extends Activity {
         llenarListView();
     }
 
+    public void llenarListView() {
+        serviciosPaciente.abrirBD();
+        List<Paciente> paciente = serviciosPaciente.recuperarTodos();
+        ArrayAdapter<Paciente> adapter = new ArrayAdapter<Paciente>(this, android.R.layout.simple_list_item_1, paciente);
+        lstpaciente.setAdapter(adapter);
+        serviciosPaciente.cerrarBD();
+    }
+
   @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         getMenuInflater().inflate(R.menu.menu_paciente, menu);
     }
 
-
-
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.actualizar:
-                //falta implementar
+                Toast.makeText(getApplicationContext(),"Falta ir actualizar",Toast.LENGTH_SHORT).show();
 
             case R.id.eliminar:
                 eliminarPaciente(pacienteRecuperado);
-                return true;
-
+            //  return true;
 
             default:
                 return super.onContextItemSelected(item);
@@ -105,30 +109,27 @@ public class ActivityAdministrarPaciente extends Activity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                baseHelper.getWritableDatabase();
+                serviciosPaciente.abrirBD();
                 serviciosPaciente.eliminar(paciente);
                 Toast.makeText(getApplicationContext(),"Registro Eliminado", Toast.LENGTH_SHORT).show();
-                baseHelper.close();
+                serviciosPaciente.cerrarBD();
                 llenarListView();
             }
         });
 
-        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Cancelar",new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Log.d("","Cancelado");
+
             }
         });
+
+
         builder.show();
     }
 
-    public void llenarListView(){
-        baseHelper.getWritableDatabase();
-        List<Paciente>paciente=serviciosPaciente.recuperarTodos();
-        ArrayAdapter<Paciente>adapter=new ArrayAdapter<Paciente>(this,android.R.layout.simple_list_item_1,paciente);
-        lstpaciente.setAdapter(adapter);
-        baseHelper.close();
-    }
-*/
+
+    
+
 
 }

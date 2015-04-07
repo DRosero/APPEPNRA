@@ -24,7 +24,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="text"
         android:ems="10"
         android:id="@+id/txtNombrePaciente"
         android:layout_gravity="center_horizontal" />
@@ -39,7 +39,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="text"
         android:ems="10"
         android:id="@+id/txtApellidoPaciente" />
 
