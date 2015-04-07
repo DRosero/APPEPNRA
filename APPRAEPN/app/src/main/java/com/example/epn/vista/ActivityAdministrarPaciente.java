@@ -5,16 +5,13 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.example.epn.MainActivity;
 import com.example.epn.appraepn.R;
 import com.example.epn.basehelper.BaseHelper;
@@ -30,14 +27,22 @@ public class ActivityAdministrarPaciente extends Activity {
     private ServiciosPaciente serviciosPaciente;
     private ListView lstpaciente;
     private Paciente pacienteRecuperado;
-    BaseHelper baseHelper;
-
 
 
     public void irNuevoPaciente(View vista){
         try {
-            Intent intent = new Intent(this, ActivityRegistrarPaciente.class);
-            startActivity(intent);
+            serviciosPaciente.abrirBD();
+            List<Paciente>paciente=serviciosPaciente.recuperarTodos();
+
+            if(paciente.isEmpty()){
+                serviciosPaciente.cerrarBD();
+                Intent intent = new Intent(this, ActivityRegistrarPaciente.class);
+                startActivity(intent);
+            }
+            else {
+                serviciosPaciente.cerrarBD();
+                Toast.makeText(getApplicationContext(),"El paciente ya a sido ingresado",Toast.LENGTH_SHORT).show();
+            }
         }
         catch(Exception e){
             Toast.makeText(getApplicationContext(),"No se puede abrir ventana Registrar Paciente", Toast.LENGTH_SHORT).show();
@@ -48,7 +53,7 @@ public class ActivityAdministrarPaciente extends Activity {
         onPause();
         Toast.makeText(getApplicationContext(),"Menú Principal", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent );
+        startActivity(intent);
     }
 
     @Override
@@ -90,11 +95,12 @@ public class ActivityAdministrarPaciente extends Activity {
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.actualizar:
-                Toast.makeText(getApplicationContext(),"Falta ir actualizar",Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(this,ActivityRegistrarPaciente.class);
+                startActivity(intent);
 
             case R.id.eliminar:
                 eliminarPaciente(pacienteRecuperado);
-            //  return true;
+                return true;
 
             default:
                 return super.onContextItemSelected(item);

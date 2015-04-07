@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:text="Guardar"
         android:id="@+id/btnGuardar"
-        android:onClick="irGuardarP"/>
+        android:onClick="irGuardarP" />
 
     <Button
         android:layout_width="wrap_content"
@@ -71,5 +71,12 @@
         android:text="Cancelar"
         android:id="@+id/btnCancelar"
         android:onClick="irCancelar" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Actualizar"
+        android:id="@+id/btnActualizar"
+        android:onClick="irActualizar" />
 
 </LinearLayout>

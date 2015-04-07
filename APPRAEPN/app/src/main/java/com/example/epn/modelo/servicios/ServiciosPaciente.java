@@ -4,10 +4,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.epn.basehelper.BaseHelper;
 import com.example.epn.modelo.entidades.Paciente;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,6 +68,28 @@ public class ServiciosPaciente<SQLiteDataBase> {
         values.put("idPaciente",paciente.getIdpaciente());
         sqLiteDatabase.delete("PACIENTE","idPaciente="+paciente.getIdpaciente(),null);
     }
+
+    public void actualizar(Paciente paciente) {
+        ContentValues values = new ContentValues();
+        values.put("nombre",paciente.getNombre());
+        values.put("apellido",paciente.getApellido());
+        values.put("direccion",paciente.getDireccion());
+
+        sqLiteDatabase.update("PACIENTE",values,"idPaciente="+paciente.getIdpaciente(),null);
+    }
+
+    public Cursor recuperarPaciente(int rowid) throws SQLException {
+        Cursor cursor = sqLiteDatabase.query("PACIENTE", columnas,
+                "idPaciente=" + rowid, null, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            Log.d(TAG, "Saliendo de recuperarPaciente");
+        }
+        return cursor;
+    }
+
+
+
 
 
 }

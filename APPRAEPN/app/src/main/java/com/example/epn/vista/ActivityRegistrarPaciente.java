@@ -2,6 +2,7 @@ package com.example.epn.vista;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,8 @@ import com.example.epn.controlador.ControladorPaciente;
 import com.example.epn.modelo.entidades.Paciente;
 import com.example.epn.modelo.servicios.ServiciosPaciente;
 
+import java.sql.SQLException;
+
 /**
  * Created by Diego on 01/04/2015.
  */
@@ -22,11 +25,11 @@ public class ActivityRegistrarPaciente extends Activity {
     ControladorPaciente controladorPaciente;
     ServiciosPaciente serviciosPaciente;
 
-
     EditText txtnombre;
     EditText txtapellido;
     EditText txtdireccion;
-    Button btnguardar;
+
+    Bundle extras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,8 @@ public class ActivityRegistrarPaciente extends Activity {
         txtdireccion = (EditText) findViewById(R.id.txtDireccionPaciente);
         controladorPaciente=new ControladorPaciente();
         serviciosPaciente=new ServiciosPaciente(this);
+
+
     }
 
     public void irGuardarP(View view){
@@ -49,11 +54,33 @@ public class ActivityRegistrarPaciente extends Activity {
             paciente.setDireccion(txtdireccion.getText().toString());
             serviciosPaciente.abrirBD();
             serviciosPaciente.insertar(paciente);
+            Toast.makeText(getApplicationContext(), "Paciente Ingresado", Toast.LENGTH_SHORT).show();
             serviciosPaciente.cerrarBD();
+            Intent intent=new Intent(this,ActivityAdministrarPaciente.class);
+            startActivity(intent);
             //controladorPaciente.irGuardar(txtnombre.getText().toString(),txtapellido.getText().toString(),txtdireccion.getText().toString());
         }
         catch (Exception e){
             Toast.makeText(getApplicationContext(),"No se puede guardar",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void irActualizar(View view){
+        extras=this.getIntent().getExtras();
+        cargarPaciente(extras.getInt("idPaciente"));
+        Paciente paciente=new Paciente();
+
+        paciente.setNombre(txtnombre.getText().toString());
+        paciente.setApellido(txtapellido.getText().toString());
+        paciente.setDireccion(txtdireccion.getText().toString());
+
+        try {
+            serviciosPaciente.abrirBD();
+            serviciosPaciente.actualizar(paciente);
+            serviciosPaciente.cerrarBD();
+        }
+        catch (Exception e){
+            Toast.makeText(getApplicationContext(),"No se puede actualizar",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -64,8 +91,23 @@ public class ActivityRegistrarPaciente extends Activity {
         startActivity(intent );
     }
 
+    public void cargarPaciente(int id) {
+        serviciosPaciente.abrirBD();
 
+        Cursor cursor = null;
+        try {
+            cursor=serviciosPaciente.recuperarPaciente(id);
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        txtnombre.setText(cursor.getString(cursor.getColumnIndex("nombre")));
+        txtapellido.setText(cursor.getString(cursor.getColumnIndex("apellido")));
+        txtdireccion.setText(cursor.getString(cursor.getColumnIndex("direccion")));
+
+        serviciosPaciente.cerrarBD();
+    }
 }
 
 
