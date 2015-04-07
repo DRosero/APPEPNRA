@@ -28,8 +28,11 @@ public class ActivityRegistrarPaciente extends Activity {
     EditText txtnombre;
     EditText txtapellido;
     EditText txtdireccion;
+<<<<<<< HEAD
 
     Bundle extras;
+=======
+>>>>>>> origin/Desarrollo
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

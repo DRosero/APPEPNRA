@@ -14,12 +14,18 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="ID:"
+        android:id="@+id/txtIdResponsable" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Nombre:"
+        android:text="Nombre (*):"
         android:id="@+id/lblNombreResp" />
 
     <EditText
@@ -34,21 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Apellido"
-        android:id="@+id/lblApellidoResponsable" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/txtApellidoResponsable" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Teléf. Móvil:"
+        android:text="Teléf. Móvil (*):"
         android:id="@+id/lblTelefMovil" />
 
     <EditText
@@ -110,7 +102,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Guardar"
-        android:id="@+id/btnGuardar"
+        android:id="@+id/btnGuardarResponsable"
         android:onClick="irGuardar" />
 
     <Button
