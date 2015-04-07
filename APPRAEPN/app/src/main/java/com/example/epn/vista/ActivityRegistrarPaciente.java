@@ -28,11 +28,8 @@ public class ActivityRegistrarPaciente extends Activity {
     EditText txtnombre;
     EditText txtapellido;
     EditText txtdireccion;
-<<<<<<< HEAD
 
     Bundle extras;
-=======
->>>>>>> origin/Desarrollo
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +41,6 @@ public class ActivityRegistrarPaciente extends Activity {
         txtdireccion = (EditText) findViewById(R.id.txtDireccionPaciente);
         controladorPaciente=new ControladorPaciente();
         serviciosPaciente=new ServiciosPaciente(this);
-
-
     }
 
     public void irGuardarP(View view){
@@ -68,25 +63,6 @@ public class ActivityRegistrarPaciente extends Activity {
         }
     }
 
-    public void irActualizar(View view){
-        extras=this.getIntent().getExtras();
-        cargarPaciente(extras.getInt("idPaciente"));
-        Paciente paciente=new Paciente();
-
-        paciente.setNombre(txtnombre.getText().toString());
-        paciente.setApellido(txtapellido.getText().toString());
-        paciente.setDireccion(txtdireccion.getText().toString());
-
-        try {
-            serviciosPaciente.abrirBD();
-            serviciosPaciente.actualizar(paciente);
-            serviciosPaciente.cerrarBD();
-        }
-        catch (Exception e){
-            Toast.makeText(getApplicationContext(),"No se puede actualizar",Toast.LENGTH_SHORT).show();
-        }
-    }
-
     public void irCancelar (View view){
         onPause();
         Toast.makeText(getApplicationContext(),"Listando Paciente", Toast.LENGTH_SHORT).show();
@@ -94,23 +70,7 @@ public class ActivityRegistrarPaciente extends Activity {
         startActivity(intent );
     }
 
-    public void cargarPaciente(int id) {
-        serviciosPaciente.abrirBD();
 
-        Cursor cursor = null;
-        try {
-            cursor=serviciosPaciente.recuperarPaciente(id);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        txtnombre.setText(cursor.getString(cursor.getColumnIndex("nombre")));
-        txtapellido.setText(cursor.getString(cursor.getColumnIndex("apellido")));
-        txtdireccion.setText(cursor.getString(cursor.getColumnIndex("direccion")));
-
-        serviciosPaciente.cerrarBD();
-    }
 }
 
 

@@ -33,9 +33,10 @@ public class ActivityAdministrarPaciente extends Activity {
         try {
             serviciosPaciente.abrirBD();
             List<Paciente>paciente=serviciosPaciente.recuperarTodos();
+            serviciosPaciente.cerrarBD();
 
             if(paciente.isEmpty()){
-                serviciosPaciente.cerrarBD();
+
                 Intent intent = new Intent(this, ActivityRegistrarPaciente.class);
                 startActivity(intent);
             }
@@ -95,16 +96,16 @@ public class ActivityAdministrarPaciente extends Activity {
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.actualizar:
-                Intent intent=new Intent(this,ActivityRegistrarPaciente.class);
+                Intent intent=new Intent(this,ActivityActualizarPaciente.class).putExtras(extras);
                 startActivity(intent);
 
             case R.id.eliminar:
                 eliminarPaciente(pacienteRecuperado);
                 return true;
 
-            default:
-                return super.onContextItemSelected(item);
+
         }
+        return false;
     }
 
     public void eliminarPaciente(final Paciente paciente){
