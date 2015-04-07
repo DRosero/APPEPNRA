@@ -21,9 +21,15 @@ public class ActivityRegistrarResponsable extends Activity {
 
     static final int PICK_CONTACT_REQUEST = 1;  // The request code
     private Button btnSeleccionar;
-    private TextView txtNombre;
-    private TextView txtNumero;
+    private Button btnGuardar;
+
     private TextView txtId;
+    private TextView txtNombre;
+    private TextView txtNumeroMovil;
+
+    private TextView txtNumeroFijo;
+    private TextView txtDireccionHogar;
+    private TextView getTxtDireccionTrabajo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +37,15 @@ public class ActivityRegistrarResponsable extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar_responsable);
 
-        btnSeleccionar =(Button)findViewById(R.id.btnSeleccionarContacto);
         txtNombre = (TextView) findViewById(R.id.txtNombreResponsable);
-        txtNumero = (TextView) findViewById(R.id.txtTelefonoMovil);
+        txtNumeroMovil = (TextView) findViewById(R.id.txtTelefonoMovil);
         txtId= (TextView) findViewById(R.id.txtIdResponsable);
+        txtNumeroFijo = (TextView) findViewById(R.id.txtTelefonoFijo);
+        txtDireccionHogar=(TextView) findViewById(R.id.txtDireccionHogarResponsable);
+        getTxtDireccionTrabajo=(TextView) findViewById(R.id.txtDireccionTrabajoResponsable);
+
+        btnSeleccionar =(Button)findViewById(R.id.btnSeleccionarContacto);
+        btnGuardar =(Button)findViewById(R.id.btnGuardarResponsable);
 
         btnSeleccionar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +55,7 @@ public class ActivityRegistrarResponsable extends Activity {
                 startActivityForResult(pickContactIntent, PICK_CONTACT_REQUEST);
             }
         });
+
     }
 
     @Override
@@ -63,7 +75,7 @@ public class ActivityRegistrarResponsable extends Activity {
     private void renderContact(Uri uri) {
 
         txtNombre.setText(tomarNombre(uri));
-        txtNumero.setText(tomarNumero(uri));
+        txtNumeroMovil.setText(tomarNumero(uri));
         txtId.setText(tomarId(uri));
 
     }
@@ -183,6 +195,34 @@ public class ActivityRegistrarResponsable extends Activity {
     }
 
     public void irGuardar(View view){
-        Toast.makeText(getApplicationContext(), "Implementar", Toast.LENGTH_SHORT).show();
+        int verificador= irValidar();
+
+        if (verificador==1){
+        try{
+
+
+            Toast.makeText(getApplicationContext(), "Guardando Contacto", Toast.LENGTH_SHORT).show();
+
+        }
+        catch(Exception e){
+
+        }
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Nombre y Número Móvil son obligatorios", Toast.LENGTH_SHORT).show();
+
+        }
+
+    }
+    public int irValidar(){
+
+        if(txtNombre.getText().toString().equals("") || txtNumeroMovil.getText().toString().equals("")){
+            return 0;
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Campos Correctos", Toast.LENGTH_SHORT).show();
+            System.out.println("Validar que numero telefonico sea el celular");
+            return 1;
+        }
     }
 }

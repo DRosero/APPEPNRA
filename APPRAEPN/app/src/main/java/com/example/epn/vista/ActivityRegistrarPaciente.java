@@ -26,7 +26,6 @@ public class ActivityRegistrarPaciente extends Activity {
     EditText txtnombre;
     EditText txtapellido;
     EditText txtdireccion;
-    Button btnguardar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
