@@ -111,6 +111,4 @@
         android:text="Cancelar"
         android:id="@+id/btnCancelar"
         android:onClick="irCancelar" />
-
-
 </LinearLayout>
