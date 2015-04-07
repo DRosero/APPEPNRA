@@ -14,6 +14,12 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="ID:"
+        android:id="@+id/txtIdResponsable" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,20 +35,6 @@
         android:ems="10"
         android:id="@+id/txtNombreResponsable"
         android:layout_gravity="center_horizontal" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Apellido"
-        android:id="@+id/lblApellidoResponsable" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/txtApellidoResponsable" />
 
     <TextView
         android:layout_width="wrap_content"
