@@ -10,19 +10,31 @@ import android.util.Log;
  */
 public class BaseHelper extends SQLiteOpenHelper {
 
-    String sentencia="CREATE TABLE PACIENTE(idPaciente INTEGER PRIMARY KEY AUTOINCREMENT," +
+    //sentencia para tabla Paciente
+    String sentPaciente="CREATE TABLE PACIENTE(idPaciente INTEGER PRIMARY KEY AUTOINCREMENT," +
             "nombre TEXT NOT NULL," +
             "apellido TEXT NOT NULL," +
             "direccion TEXT NOT NULL)";
 
-    public BaseHelper(Context context){
-        super(context,"bdtesis",null,1);
+    //sentencia para tabla Responsable
+    String sentResponsable="CREATE TABLE RESPONSABLE(idResponsable INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "nombreResponsable TEXT NOT NULL," +
+            "telefonoMovil TEXT NOT NULL"+
+            "telefonoFijo TEXT NOT NULL"+
+            "direccionHogar TEXT NOT NULL"+
+            "direccionTrabajo TEXT NOT NULL"+
+            "prioridadResponsable INTEGER NOT NULL)";
+
+
+    public BaseHelper(Context contexto){
+        super(contexto,"bdtesis",null,2);
     }
 
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(sentencia);
+        db.execSQL(sentPaciente);
+        db.execSQL(sentResponsable);
         //db.execSQL("DROP DATABASE bdtesis");
     }
 
@@ -31,6 +43,7 @@ public class BaseHelper extends SQLiteOpenHelper {
         Log.w("DBAdapter", "Upgrading database from version " + oldVersion
                 + " to " + newVersion + ", which will destroy all old data");
         db.execSQL("DROP TABLE IF EXISTS PACIENTE");
+        db.execSQL("DROP TABLE IF EXISTS RESPONSABLE");
         onCreate(db);
     }
 

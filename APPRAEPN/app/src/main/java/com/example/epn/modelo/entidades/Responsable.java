@@ -11,9 +11,18 @@ public class Responsable {
     public String telefonoFijo;
     public String direccionHogar;
     public String direccionTrabajo;
+    public int prioridadResponsable;
 
     public Responsable(){
 
+    }
+
+    public int getPrioridadResponsable() {
+        return prioridadResponsable;
+    }
+
+    public void setPrioridadResponsable(int prioridadResponsable) {
+        this.prioridadResponsable = prioridadResponsable;
     }
 
     public int getIdresponsable() {
