@@ -19,7 +19,7 @@ import java.util.List;
 public class ServiciosPaciente<SQLiteDataBase> {
 
     final String TAG="Tesis";
-    BaseHelper baseHelper;
+    private BaseHelper baseHelper;
 
     private SQLiteDatabase sqLiteDatabase;
     private String columnas[]={"idpaciente","nombre","apellido","direccion"};
@@ -64,8 +64,8 @@ public class ServiciosPaciente<SQLiteDataBase> {
     }
 
     public void eliminar(Paciente paciente){
-        ContentValues values=new ContentValues();
-        values.put("idPaciente",paciente.getIdpaciente());
+       /* ContentValues values=new ContentValues();
+        values.put("idPaciente",paciente.getIdpaciente());*/
         sqLiteDatabase.delete("PACIENTE","idPaciente="+paciente.getIdpaciente(),null);
     }
 

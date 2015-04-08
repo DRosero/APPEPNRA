@@ -30,11 +30,14 @@ public class ActivityActualizarPaciente extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actualizar_paciente);
+
         txtapellido=(TextView)findViewById(R.id.txtApellidoPaciente);
         txtnombre=(TextView)findViewById(R.id.txtNombrePaciente);
         txtdireccion=(TextView)findViewById(R.id.txtDireccionPaciente);
+
         serviciosPaciente=new ServiciosPaciente(this);
         extras=this.getIntent().getExtras();
+
         cargarPaciente(extras.getInt("idPaciente"));
         paciente=new Paciente();
     }
