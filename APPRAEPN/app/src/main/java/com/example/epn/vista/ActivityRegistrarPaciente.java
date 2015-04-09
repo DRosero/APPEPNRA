@@ -44,22 +44,29 @@ public class ActivityRegistrarPaciente extends Activity {
     }
 
     public void irGuardarP(View view){
-        Paciente paciente=new Paciente();
+        int numeroValidar=irValidar();
 
-        try {
-            paciente.setNombre(txtnombre.getText().toString());
-            paciente.setApellido(txtapellido.getText().toString());
-            paciente.setDireccion(txtdireccion.getText().toString());
-            serviciosPaciente.abrirBD();
-            serviciosPaciente.insertar(paciente);
-            Toast.makeText(getApplicationContext(), "Paciente Ingresado", Toast.LENGTH_SHORT).show();
-            serviciosPaciente.cerrarBD();
-            Intent intent=new Intent(this,ActivityAdministrarPaciente.class);
-            startActivity(intent);
-            //controladorPaciente.irGuardar(txtnombre.getText().toString(),txtapellido.getText().toString(),txtdireccion.getText().toString());
+        if(numeroValidar==1){
+            Paciente paciente=new Paciente();
+
+            try {
+                paciente.setNombre(txtnombre.getText().toString());
+                paciente.setApellido(txtapellido.getText().toString());
+                paciente.setDireccion(txtdireccion.getText().toString());
+                serviciosPaciente.abrirBD();
+                serviciosPaciente.insertar(paciente);
+                Toast.makeText(getApplicationContext(), "Paciente Ingresado", Toast.LENGTH_SHORT).show();
+                serviciosPaciente.cerrarBD();
+                Intent intent=new Intent(this,ActivityAdministrarPaciente.class);
+                startActivity(intent);
+                //controladorPaciente.irGuardar(txtnombre.getText().toString(),txtapellido.getText().toString(),txtdireccion.getText().toString());
+            }
+            catch (Exception e){
+                Toast.makeText(getApplicationContext(),"No se puede guardar",Toast.LENGTH_SHORT).show();
+            }
         }
-        catch (Exception e){
-            Toast.makeText(getApplicationContext(),"No se puede guardar",Toast.LENGTH_SHORT).show();
+        else {
+            Toast.makeText(getApplicationContext(),"Revisar el ingreso de los datos",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -68,6 +75,18 @@ public class ActivityRegistrarPaciente extends Activity {
         Toast.makeText(getApplicationContext(),"Listando Paciente", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, ActivityAdministrarPaciente.class);
         startActivity(intent );
+    }
+
+    public int irValidar(){
+
+        if (txtnombre.getText().toString().equals("")||txtapellido.getText().toString().equals("")||txtdireccion.getText().toString().equals("")) {
+            return 0;
+        }
+
+        else{
+            Toast.makeText(getApplicationContext(), "Campos Correctos", Toast.LENGTH_SHORT).show();
+            return 1;
+        }
     }
 
 

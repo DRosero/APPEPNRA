@@ -73,14 +73,17 @@ public class Responsable {
         this.nombre = nombre;
     }
 
+
     @Override
     public String toString() {
         return "Responsable{" +
                 "idresponsable=" + idresponsable +
-                ", nombre='" + nombre +
-                ", móvil='" + telefonoMovil +
-                ", fijo='" + telefonoFijo +
-                ", direccionHogar='" + direccionHogar +
-                ", direccionTrabajo='"+direccionTrabajo+'}';
+                ", nombre='" + nombre + '\'' +
+                ", telefonoMovil='" + telefonoMovil + '\'' +
+                ", telefonoFijo='" + telefonoFijo + '\'' +
+                ", direccionHogar='" + direccionHogar + '\'' +
+                ", direccionTrabajo='" + direccionTrabajo + '\'' +
+                ", prioridadResponsable=" + prioridadResponsable +
+                '}';
     }
 }

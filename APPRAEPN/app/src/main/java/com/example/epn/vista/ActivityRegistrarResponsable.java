@@ -9,10 +9,15 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.epn.appraepn.R;
+import com.example.epn.modelo.entidades.Responsable;
+import com.example.epn.modelo.servicios.ServiciosResponsable;
+
+import java.util.List;
 
 /**
  * Created by Gabriel on 03/04/2015.
@@ -23,13 +28,16 @@ public class ActivityRegistrarResponsable extends Activity {
     private Button btnSeleccionar;
     private Button btnGuardar;
 
-    private TextView txtId;
-    private TextView txtNombre;
-    private TextView txtNumeroMovil;
 
-    private TextView txtNumeroFijo;
-    private TextView txtDireccionHogar;
-    private TextView getTxtDireccionTrabajo;
+    private TextView txtId;
+    private EditText txtNombre;
+    private EditText txtNumeroMovil;
+
+    private EditText txtNumeroFijo;
+    private EditText txtDireccionHogar;
+    private EditText TxtDireccionTrabajo;
+
+    ServiciosResponsable serviciosResponsable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +45,17 @@ public class ActivityRegistrarResponsable extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar_responsable);
 
-        txtNombre = (TextView) findViewById(R.id.txtNombreResponsable);
-        txtNumeroMovil = (TextView) findViewById(R.id.txtTelefonoMovil);
-        txtId= (TextView) findViewById(R.id.txtIdResponsable);
-        txtNumeroFijo = (TextView) findViewById(R.id.txtTelefonoFijo);
-        txtDireccionHogar=(TextView) findViewById(R.id.txtDireccionHogarResponsable);
-        getTxtDireccionTrabajo=(TextView) findViewById(R.id.txtDireccionTrabajoResponsable);
+        txtNombre = (EditText) findViewById(R.id.txtNombreResponsable);
+        txtNumeroMovil = (EditText) findViewById(R.id.txtTelefonoMovil);
+        txtNumeroFijo = (EditText) findViewById(R.id.txtTelefonoFijo);
+        txtId=(TextView) findViewById(R.id.txtIdResponsable);
+        txtDireccionHogar=(EditText) findViewById(R.id.txtDireccionHogarResponsable);
+        TxtDireccionTrabajo=(EditText) findViewById(R.id.txtDireccionTrabajoResponsable);
 
         btnSeleccionar =(Button)findViewById(R.id.btnSeleccionarContacto);
         btnGuardar =(Button)findViewById(R.id.btnGuardarResponsable);
+
+        serviciosResponsable=new ServiciosResponsable(this);
 
         btnSeleccionar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,18 +206,34 @@ public class ActivityRegistrarResponsable extends Activity {
 
     public void irGuardar(View view){
         int verificador= irValidar();
+        Responsable responsable=new Responsable();
 
         if (verificador==1){
         try{
+            responsable.setNombre(txtNombre.getText().toString());
+            responsable.setTelefonoMovil(txtNumeroMovil.getText().toString());
+            responsable.setTelefonoFijo(txtNumeroFijo.getText().toString());
+            responsable.setDireccionHogar(txtDireccionHogar.getText().toString());
+            responsable.setDireccionTrabajo(TxtDireccionTrabajo.getText().toString());
 
+            if (existePrioritario()) {
+                responsable.setPrioridadResponsable(0);
+            } else {
+                responsable.setPrioridadResponsable(1);
+            }
 
+            serviciosResponsable.abrirConexion();
+            serviciosResponsable.insertar(responsable);
             Toast.makeText(getApplicationContext(), "Guardando Contacto", Toast.LENGTH_SHORT).show();
+            serviciosResponsable.cerrarConexion();
+            startActivity(new Intent(this,ActivityAdministrarResponsable.class));
 
         }
         catch(Exception e){
+            Toast.makeText(getApplicationContext(),"No se puede guardar responsable",Toast.LENGTH_SHORT).show();
+        }
+        }
 
-        }
-        }
         else{
             Toast.makeText(getApplicationContext(), "Nombre y Número Móvil son obligatorios", Toast.LENGTH_SHORT).show();
 
@@ -224,5 +250,23 @@ public class ActivityRegistrarResponsable extends Activity {
             System.out.println("Validar que numero telefonico sea el celular");
             return 1;
         }
+    }
+
+    private boolean existePrioritario() {
+        serviciosResponsable.abrirConexion();
+
+        List<Responsable> responsables = serviciosResponsable.listarResponsbale();
+
+        if (responsables.size() > 0) {
+            for (Responsable responsable : responsables) {
+                if (responsable.getPrioridadResponsable() == 1) {
+                    serviciosResponsable.cerrarConexion();
+                    return true;
+                }
+            }
+        }
+        serviciosResponsable.cerrarConexion();
+        return false;
+
     }
 }

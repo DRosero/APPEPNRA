@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,6 +30,7 @@ public class ActivityAdministrarResponsable extends Activity {
     private Responsable responsable;
 
     public void irNuevoResponsable(View vista){
+
         try {
             serviciosResponsable.abrirConexion();
             List<Responsable> responsable=serviciosResponsable.listarResponsbale();
@@ -36,11 +38,9 @@ public class ActivityAdministrarResponsable extends Activity {
 
             if(responsable.isEmpty()){
                 Toast.makeText(getApplicationContext(),"No existen Responsables registrados",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, ActivityRegistrarResponsable.class);
+                startActivity(intent);//hasta aqui hice hoy
             }
-
-            Intent intent = new Intent(this, ActivityRegistrarResponsable.class);
-            startActivity(intent);//hasta aqui hice hoy
-
         }
         catch(Exception e){
             Toast.makeText(getApplicationContext(), "No se puede abrir ventana Registrar Respnsable", Toast.LENGTH_SHORT).show();
@@ -76,7 +76,6 @@ public class ActivityAdministrarResponsable extends Activity {
 
     public void llenarListView() {
         serviciosResponsable.abrirConexion();
-
         List<Responsable> responsable = serviciosResponsable.listarResponsbale();
         ArrayAdapter<Responsable> adapter = new ArrayAdapter<Responsable>(this, android.R.layout.simple_list_item_1, responsable);
         lstResponsable.setAdapter(adapter);
@@ -84,10 +83,15 @@ public class ActivityAdministrarResponsable extends Activity {
     }
 
     @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.menu_responsable, menu);
+    }
+
+    @Override
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.actualizar:
-
                 /*startActivity(new Intent(ContactosActivity.this,
                         ActualizarActivity.class).putExtras(extras));
                 return true;*/
@@ -106,9 +110,9 @@ public class ActivityAdministrarResponsable extends Activity {
 
         List<Responsable> responsableslista =serviciosResponsable.listarResponsbale();
 
-        for(Responsable responsable1: responsableslista){
+        for(Responsable responsable: responsableslista){
             responsable.setPrioridadResponsable(0);
-            serviciosResponsable.actualizar(responsable1);
+            serviciosResponsable.actualizar(responsable);
         }
 
         responsables.setPrioridadResponsable(1);
