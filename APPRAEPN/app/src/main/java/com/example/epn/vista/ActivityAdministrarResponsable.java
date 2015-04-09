@@ -5,19 +5,15 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.example.epn.MainActivity;
 import com.example.epn.appraepn.R;
-import com.example.epn.modelo.entidades.Paciente;
 import com.example.epn.modelo.entidades.Responsable;
-import com.example.epn.modelo.servicios.ServiciosPaciente;
 import com.example.epn.modelo.servicios.ServiciosResponsable;
 
 import java.util.List;
