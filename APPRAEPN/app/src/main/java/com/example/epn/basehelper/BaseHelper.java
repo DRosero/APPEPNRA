@@ -19,10 +19,10 @@ public class BaseHelper extends SQLiteOpenHelper {
     //sentencia para tabla Responsable
     String sentResponsable="CREATE TABLE RESPONSABLE(idResponsable INTEGER PRIMARY KEY AUTOINCREMENT," +
             "nombreResponsable TEXT NOT NULL," +
-            "telefonoMovil TEXT NOT NULL"+
-            "telefonoFijo TEXT NOT NULL"+
-            "direccionHogar TEXT NOT NULL"+
-            "direccionTrabajo TEXT NOT NULL"+
+            "telefonoMovil TEXT NOT NULL,"+
+            "telefonoFijo TEXT NOT NULL,"+
+            "direccionHogar TEXT NOT NULL,"+
+            "direccionTrabajo TEXT NOT NULL,"+
             "prioridadResponsable INTEGER NOT NULL)";
 
 
