@@ -94,7 +94,6 @@ public class ActivityAdministrarResponsable extends Activity {
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.actualizar:
-
                 /*startActivity(new Intent(ContactosActivity.this,
                         ActualizarActivity.class).putExtras(extras));
                 return true;*/
@@ -108,18 +107,16 @@ public class ActivityAdministrarResponsable extends Activity {
         }
     }
 
-    private void darPrioridad(Responsable responsables) {
+    private void darPrioridad(Responsable responsableRecuperado) {
         serviciosResponsable.abrirConexion();
-
         List<Responsable> responsableslista =serviciosResponsable.listarResponsbale();
 
-        for(Responsable responsable1: responsableslista){
+        for(Responsable responsable: responsableslista){
             responsable.setPrioridadResponsable(0);
-            serviciosResponsable.actualizar(responsable1);
+            serviciosResponsable.actualizar(responsable);
         }
-
-        responsables.setPrioridadResponsable(1);
-        serviciosResponsable.actualizar(responsables);
+        responsableRecuperado.setPrioridadResponsable(1);
+        serviciosResponsable.actualizar(responsableRecuperado);
         serviciosResponsable.cerrarConexion();
 
         llenarListView();
@@ -127,7 +124,7 @@ public class ActivityAdministrarResponsable extends Activity {
                 Toast.LENGTH_SHORT).show();
     }
 
-    public void eliminarResponsable(final Responsable responsables) {
+    public void eliminarResponsable(final Responsable responsable) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Borrar Responsable");
         builder.setMessage("Seguro que desea borrarlo?");
@@ -137,12 +134,13 @@ public class ActivityAdministrarResponsable extends Activity {
             public void onClick(DialogInterface dialog, int which) {
                 try {
                     serviciosResponsable.abrirConexion();
-                    if (responsables.getPrioridadResponsable() == 1) {
+
+                    if (responsable.getPrioridadResponsable() == 1) {
                         Toast.makeText(getApplicationContext(),
-                                "No puede eliminar el contacto con prioridad",
+                                "No puede eliminar el contacto con prioridad de llamada",
                                 Toast.LENGTH_LONG).show();
                     } else {
-                        serviciosResponsable.eliminar(responsables);
+                        serviciosResponsable.eliminar(responsable);
                         Toast.makeText(getApplicationContext(),
                                 "Contacto eliminado", Toast.LENGTH_SHORT)
                                 .show();
@@ -150,8 +148,10 @@ public class ActivityAdministrarResponsable extends Activity {
                     serviciosResponsable.cerrarConexion();
 
                     llenarListView();
-                } catch (Exception exception) {
-                    Toast.makeText(getApplicationContext(),"Error al borrar el contacto",Toast.LENGTH_SHORT).show();
+                }
+
+                catch (Exception exception) {
+                    Toast.makeText(getApplicationContext(),"Error al eliminar esta en el catch",Toast.LENGTH_SHORT).show();
                 }
             }
         });

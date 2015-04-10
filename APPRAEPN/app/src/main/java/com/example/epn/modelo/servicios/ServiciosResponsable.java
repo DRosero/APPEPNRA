@@ -81,6 +81,7 @@ public class ServiciosResponsable {
     }
 
     public void eliminar(Responsable responsable){
-        sqLiteDatabase.delete("RESPONSABLE", "id=" + responsable.getIdresponsable(), null);
+        sqLiteDatabase.delete("RESPONSABLE", "idResponsable=" + responsable.getIdresponsable(), null);
     }
+
 }
