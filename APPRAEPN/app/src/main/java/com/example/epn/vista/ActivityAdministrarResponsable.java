@@ -36,10 +36,9 @@ public class ActivityAdministrarResponsable extends Activity {
 
             if(responsable.isEmpty()){
                 Toast.makeText(getApplicationContext(),"No existen Responsables registrados",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, ActivityRegistrarResponsable.class);
+                startActivity(intent);//hasta aqui hice hoy
             }
-
-            Intent intent = new Intent(this, ActivityRegistrarResponsable.class);
-            startActivity(intent);//hasta aqui hice hoy
 
         }
         catch(Exception e){
