@@ -39,7 +39,10 @@ public class ActivityAdministrarResponsable extends Activity {
                 Intent intent = new Intent(this, ActivityRegistrarResponsable.class);
                 startActivity(intent);//hasta aqui hice hoy
             }
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 3bc3e14... Arreglo Activity Responsable
         }
         catch(Exception e){
             Toast.makeText(getApplicationContext(), "No se puede abrir ventana Registrar Respnsable", Toast.LENGTH_SHORT).show();
