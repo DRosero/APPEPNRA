@@ -19,7 +19,7 @@ public class ServiciosResponsable {
 
     private BaseHelper baseHelper;
     private SQLiteDatabase sqLiteDatabase;
-    private String columnas[]={"idResponsable","nombreResponsable","telefonoMovil","telefonoFijo","direccionHogar","direccionTrabajo","prioridadResponsable"};
+    private String columnas[]={"idResponsable","nombreResponsable","telefonoMovil","telefonoFijo","direccionHogar","direccionTrabajo"};
 
     public ServiciosResponsable(Context contexto){
         baseHelper=new BaseHelper(contexto);
@@ -76,7 +76,7 @@ public class ServiciosResponsable {
         valores.put("direccionTrabajo",responsable.getDireccionTrabajo().toString());
         valores.put("prioridadResponsable", responsable.getPrioridadResponsable());
 
-        sqLiteDatabase.update("RESPONSABLE", valores, "idResponsable=" + responsable.getIdresponsable(), null);
+        sqLiteDatabase.update("RESPONSABLE", valores, "id=" + responsable.getIdresponsable(), null);
         System.out.println("Responsable Actualizado en ServicioResponsable, OK");
     }
 
