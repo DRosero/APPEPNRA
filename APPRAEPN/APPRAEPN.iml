@@ -8,8 +8,11 @@
     </facet>
   </component>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <component name="NewModuleRootManager" inherit-compiler-output="true">
 =======
+=======
+>>>>>>> parent of 3bc3e14... Arreglo Activity Responsable
   <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/build/classes/main" />
     <output-test url="file://$MODULE_DIR$/build/classes/test" />
