@@ -40,7 +40,10 @@ public class ActivityAdministrarResponsable extends Activity {
                 startActivity(intent);//hasta aqui hice hoy
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 3bc3e14... Arreglo Activity Responsable
 =======
 >>>>>>> parent of 3bc3e14... Arreglo Activity Responsable
         }
