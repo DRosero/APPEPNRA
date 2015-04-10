@@ -15,7 +15,6 @@ import com.example.epn.vista.ActivityAdministrarResponsable;
 import com.example.epn.vista.ActivityAdministrarSitiosConocidos;
 import com.example.epn.vista.ActivityAreaMovimientoPermitido;
 import com.example.epn.vista.ActivityEstablecerIntervaloAlertas;
-import com.example.epn.vista.ActivityEstablecerPrioridades;
 import com.example.epn.vista.ActivityEstablecerSitioCentral;
 
 
@@ -69,16 +68,7 @@ public class MainActivity extends ActionBarActivity {
         }
 
     }
-    public void irEstablecerPrioridades (View vista){
-        try {
-            Intent intent = new Intent(this,ActivityEstablecerPrioridades.class);
-            startActivity(intent);
-        }
-        catch(Exception e){
-            Toast.makeText(getApplicationContext(),"Error en Main: No se puede abrir este módulo", Toast.LENGTH_SHORT).show();
-        }
 
-    }
     public void irEstablecerSitioCentral (View vista){
         try {
             Intent intent = new Intent(this,ActivityEstablecerSitioCentral.class);

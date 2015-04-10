@@ -40,22 +40,12 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Establecer Prioridades de Responsables"
-        android:id="@+id/btnEstablecerPrioridades"
-        android:layout_below="@+id/btnDatosResponsable"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="irEstablecerPrioridades"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Establecer Sitio Central"
         android:id="@+id/btnSitioCentral"
-        android:layout_below="@+id/btnEstablecerPrioridades"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:onClick="irEstablecerSitioCentral"/>
+        android:onClick="irEstablecerSitioCentral"
+        android:layout_below="@+id/btnDatosResponsable" />
 
     <Button
         android:layout_width="wrap_content"

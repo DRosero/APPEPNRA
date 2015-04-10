@@ -27,7 +27,7 @@ public class BaseHelper extends SQLiteOpenHelper {
 
 
     public BaseHelper(Context contexto){
-        super(contexto,"bdtesis",null,1);
+        super(contexto,"bdtesis",null,3);
     }
 
 
