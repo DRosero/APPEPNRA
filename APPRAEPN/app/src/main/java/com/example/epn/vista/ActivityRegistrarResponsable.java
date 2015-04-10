@@ -9,40 +9,49 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.epn.appraepn.R;
+import com.example.epn.modelo.entidades.Responsable;
+import com.example.epn.modelo.servicios.ServiciosResponsable;
+
+import java.util.List;
 
 /**
  * Created by Gabriel on 03/04/2015.
  */
 public class ActivityRegistrarResponsable extends Activity {
 
+    ServiciosResponsable serviciosResponsable;
+
     static final int PICK_CONTACT_REQUEST = 1;  // The request code
     private Button btnSeleccionar;
     private Button btnGuardar;
 
     private TextView txtId;
-    private TextView txtNombre;
-    private TextView txtNumeroMovil;
+    private EditText txtNombre;
+    private EditText txtNumeroMovil;
 
-    private TextView txtNumeroFijo;
-    private TextView txtDireccionHogar;
-    private TextView getTxtDireccionTrabajo;
+    private EditText txtNumeroFijo;
+    private EditText txtDireccionHogar;
+    private EditText getTxtDireccionTrabajo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar_responsable);
+        serviciosResponsable=new ServiciosResponsable(this);
 
-        txtNombre = (TextView) findViewById(R.id.txtNombreResponsable);
-        txtNumeroMovil = (TextView) findViewById(R.id.txtTelefonoMovil);
+
+        txtNombre = (EditText) findViewById(R.id.txtNombreResponsable);
+        txtNumeroMovil = (EditText) findViewById(R.id.txtTelefonoMovil);
         txtId= (TextView) findViewById(R.id.txtIdResponsable);
-        txtNumeroFijo = (TextView) findViewById(R.id.txtTelefonoFijo);
-        txtDireccionHogar=(TextView) findViewById(R.id.txtDireccionHogarResponsable);
-        getTxtDireccionTrabajo=(TextView) findViewById(R.id.txtDireccionTrabajoResponsable);
+        txtNumeroFijo = (EditText) findViewById(R.id.txtTelefonoFijo);
+        txtDireccionHogar=(EditText) findViewById(R.id.txtDireccionHogarResponsable);
+        getTxtDireccionTrabajo=(EditText) findViewById(R.id.txtDireccionTrabajoResponsable);
 
         btnSeleccionar =(Button)findViewById(R.id.btnSeleccionarContacto);
         btnGuardar =(Button)findViewById(R.id.btnGuardarResponsable);
@@ -195,13 +204,26 @@ public class ActivityRegistrarResponsable extends Activity {
     }
 
     public void irGuardar(View view){
+        Responsable responsable=new Responsable();
         int verificador= irValidar();
 
         if (verificador==1){
         try{
+            responsable.setNombre(txtNombre.getText().toString());
+            responsable.setTelefonoMovil(txtNumeroMovil.getText().toString());
+            responsable.setTelefonoFijo(txtNumeroFijo.getText().toString());
+            responsable.setDireccionHogar(txtDireccionHogar.getText().toString());
+            responsable.setDireccionTrabajo(getTxtDireccionTrabajo.getText().toString());
+            if (existePrioritario()) {
+                responsable.setPrioridadResponsable(0);
+            } else {
+                responsable.setPrioridadResponsable(1);
+            }
 
-
+            serviciosResponsable.abrirConexion();
+            serviciosResponsable.insertar(responsable);
             Toast.makeText(getApplicationContext(), "Guardando Contacto", Toast.LENGTH_SHORT).show();
+            serviciosResponsable.cerrarConexion();
 
         }
         catch(Exception e){
@@ -224,5 +246,22 @@ public class ActivityRegistrarResponsable extends Activity {
             System.out.println("Validar que numero telefonico sea el celular");
             return 1;
         }
+    }
+
+    private boolean existePrioritario() {
+        serviciosResponsable.abrirConexion();
+
+        List<Responsable> responsables = serviciosResponsable.listarResponsbale();
+        if (responsables.size()> 0) {
+            for (Responsable responsable : responsables) {
+                if (responsable.getPrioridadResponsable()==1) {
+                    serviciosResponsable.cerrarConexion();
+                    return true;
+                }
+            }
+        }
+        serviciosResponsable.cerrarConexion();
+        return false;
+
     }
 }

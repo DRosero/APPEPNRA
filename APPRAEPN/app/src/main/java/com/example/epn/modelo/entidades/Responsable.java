@@ -77,10 +77,12 @@ public class Responsable {
     public String toString() {
         return "Responsable{" +
                 "idresponsable=" + idresponsable +
-                ", nombre='" + nombre +
-                ", móvil='" + telefonoMovil +
-                ", fijo='" + telefonoFijo +
-                ", direccionHogar='" + direccionHogar +
-                ", direccionTrabajo='"+direccionTrabajo+'}';
+                ", nombre='" + nombre + '\'' +
+                ", telefonoMovil='" + telefonoMovil + '\'' +
+                ", telefonoFijo='" + telefonoFijo + '\'' +
+                ", direccionHogar='" + direccionHogar + '\'' +
+                ", direccionTrabajo='" + direccionTrabajo + '\'' +
+                ", prioridadResponsable=" + prioridadResponsable +
+                '}';
     }
 }

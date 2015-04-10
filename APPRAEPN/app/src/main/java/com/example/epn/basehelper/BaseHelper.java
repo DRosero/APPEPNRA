@@ -27,16 +27,9 @@ public class BaseHelper extends SQLiteOpenHelper {
 
 
     public BaseHelper(Context contexto){
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-        super(contexto,"bdtesis",null,3);
-=======
-        super(contexto,"bdtesis",null,2);
->>>>>>> parent of 930afa6... Activity Responsable
-=======
-        super(contexto,"bdtesis",null,2);
->>>>>>> parent of 930afa6... Activity Responsable
+        super(contexto,"bdtesis",null,1);
+
     }
 
 

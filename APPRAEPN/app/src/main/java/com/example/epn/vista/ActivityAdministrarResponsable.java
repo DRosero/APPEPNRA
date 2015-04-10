@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -36,35 +37,11 @@ public class ActivityAdministrarResponsable extends Activity {
 
             if(responsable.isEmpty()){
                 Toast.makeText(getApplicationContext(),"No existen Responsables registrados",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ActivityRegistrarResponsable.class);
-                startActivity(intent);//hasta aqui hice hoy
             }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of 3bc3e14... Arreglo Activity Responsable
-=======
->>>>>>> parent of 3bc3e14... Arreglo Activity Responsable
-=======
-=======
->>>>>>> parent of 930afa6... Activity Responsable
 
             Intent intent = new Intent(this, ActivityRegistrarResponsable.class);
             startActivity(intent);//hasta aqui hice hoy
 
-<<<<<<< HEAD
->>>>>>> parent of 930afa6... Activity Responsable
-=======
->>>>>>> parent of 3bc3e14... Arreglo Activity Responsable
-=======
->>>>>>> parent of 930afa6... Activity Responsable
-=======
->>>>>>> parent of 3bc3e14... Arreglo Activity Responsable
         }
         catch(Exception e){
             Toast.makeText(getApplicationContext(), "No se puede abrir ventana Registrar Respnsable", Toast.LENGTH_SHORT).show();
@@ -76,6 +53,12 @@ public class ActivityAdministrarResponsable extends Activity {
         Toast.makeText(getApplicationContext(),"Menú Principal", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent );
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.menu_responsable, menu);
     }
 
     @Override
@@ -144,7 +127,7 @@ public class ActivityAdministrarResponsable extends Activity {
                 Toast.LENGTH_SHORT).show();
     }
 
-    public void eliminarResponsable(final Responsable responsable) {
+    public void eliminarResponsable(final Responsable responsables) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Borrar Responsable");
         builder.setMessage("Seguro que desea borrarlo?");
@@ -154,12 +137,12 @@ public class ActivityAdministrarResponsable extends Activity {
             public void onClick(DialogInterface dialog, int which) {
                 try {
                     serviciosResponsable.abrirConexion();
-                    if (responsable.getPrioridadResponsable() == 1) {
+                    if (responsables.getPrioridadResponsable() == 1) {
                         Toast.makeText(getApplicationContext(),
                                 "No puede eliminar el contacto con prioridad",
                                 Toast.LENGTH_LONG).show();
                     } else {
-                        serviciosResponsable.eliminar(responsable);
+                        serviciosResponsable.eliminar(responsables);
                         Toast.makeText(getApplicationContext(),
                                 "Contacto eliminado", Toast.LENGTH_SHORT)
                                 .show();
