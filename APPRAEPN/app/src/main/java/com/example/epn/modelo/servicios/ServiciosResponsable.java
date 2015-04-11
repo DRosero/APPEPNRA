@@ -69,16 +69,19 @@ public class ServiciosResponsable {
     }
 
     public void actualizar(Responsable responsable){
+        abrirConexion();
+
         ContentValues valores = new ContentValues();
 
-        valores.put("nombreResponsable",responsable.getNombre().toString());
-        valores.put("telefonoMovil", responsable.getTelefonoMovil().toString());
-        valores.put("telefonoFijo", responsable.getTelefonoFijo().toString());
-        valores.put("direccionHogar",responsable.getDireccionHogar().toString());
-        valores.put("direccionTrabajo",responsable.getDireccionTrabajo().toString());
+        valores.put("nombreResponsable",responsable.getNombre());
+        valores.put("telefonoMovil", responsable.getTelefonoMovil());
+        valores.put("telefonoFijo", responsable.getTelefonoFijo());
+        valores.put("direccionHogar",responsable.getDireccionHogar());
+        valores.put("direccionTrabajo",responsable.getDireccionTrabajo());
         valores.put("prioridadResponsable", responsable.getPrioridadResponsable());
 
         sqLiteDatabase.update("RESPONSABLE", valores, "idResponsable=" + responsable.getIdresponsable(), null);
+        cerrarConexion();
         System.out.println("Responsable Actualizado en ServicioResponsable, OK");
     }
 

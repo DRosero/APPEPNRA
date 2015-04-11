@@ -55,6 +55,7 @@ public class ActivityActualizarResponsable extends Activity {
         try {
             Cursor c= serviciosResponsable.recuperarResponsable(id);
             if(c!=null){
+                responsable.setIdresponsable(c.getInt(0));
                 responsable.setNombre(c.getString(1));
                 responsable.setTelefonoMovil(c.getString(2));
                 responsable.setTelefonoFijo(c.getString(3));
@@ -81,10 +82,11 @@ public class ActivityActualizarResponsable extends Activity {
         try {
             serviciosResponsable.abrirConexion();
             responsable.setNombre(txtNombre.getText().toString());
-            responsable.setTelefonoMovil(txtNumeroFijo.getText().toString());
+            responsable.setTelefonoMovil(txtNumeroMovil.getText().toString());
             responsable.setDireccionHogar(txtDireccionHogar.getText().toString());
             responsable.setDireccionTrabajo(getTxtDireccionTrabajo.getText().toString());
             responsable.setTelefonoFijo(txtNumeroFijo.getText().toString());
+            responsable.setPrioridadResponsable(responsable.getPrioridadResponsable());
 
             serviciosResponsable.actualizar(responsable);
             Toast.makeText(getApplicationContext(), "Datos de Responsable Actualizado", Toast.LENGTH_SHORT).show();
