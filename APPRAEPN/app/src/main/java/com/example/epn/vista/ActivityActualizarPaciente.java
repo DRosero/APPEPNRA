@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.epn.appraepn.R;
@@ -18,11 +19,11 @@ import java.sql.SQLException;
 public class ActivityActualizarPaciente extends Activity {
 
     ServiciosPaciente serviciosPaciente;
-    Paciente paciente;
+    Paciente paciente=new Paciente();
 
-    TextView txtnombre;
-    TextView txtapellido;
-    TextView txtdireccion;
+    EditText txtnombre;
+    EditText txtapellido;
+    EditText txtdireccion;
 
     Bundle extras;
 
@@ -31,21 +32,20 @@ public class ActivityActualizarPaciente extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actualizar_paciente);
 
-        txtapellido=(TextView)findViewById(R.id.txtApellidoPaciente);
-        txtnombre=(TextView)findViewById(R.id.txtNombrePaciente);
-        txtdireccion=(TextView)findViewById(R.id.txtDireccionPaciente);
+        txtapellido=(EditText)findViewById(R.id.txtApellidoPaciente);
+        txtnombre=(EditText)findViewById(R.id.txtNombrePaciente);
+        txtdireccion=(EditText)findViewById(R.id.txtDireccionPaciente);
 
         serviciosPaciente=new ServiciosPaciente(this);
         extras=this.getIntent().getExtras();
-
         cargarPaciente(extras.getInt("idPaciente"));
-        paciente=new Paciente();
+
     }
 
     public void cargarPaciente(int id) {
         serviciosPaciente.abrirBD();
 
-        Cursor cursor = null;
+        Cursor cursor=null;
         try {
             cursor=serviciosPaciente.recuperarPaciente(id);
         }

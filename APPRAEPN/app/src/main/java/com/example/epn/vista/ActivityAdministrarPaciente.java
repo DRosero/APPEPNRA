@@ -94,21 +94,17 @@ public class ActivityAdministrarPaciente extends Activity {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-
-        int valorItem=item.getItemId();
-        System.out.println("valor Item"+valorItem);
-        if(valorItem==2131296361){
-            Intent intent=new Intent(this,ActivityActualizarPaciente.class).putExtras(extras);
-            startActivity(intent);
-            return true;
+        switch (item.getItemId()) {
+            case R.id.actualizar:
+                startActivity(new Intent(this, ActivityActualizarPaciente.class).putExtras(extras));
+                return true;
+            case R.id.eliminar:
+                eliminarPaciente(pacienteRecuperado);
+                return true;
+            default:
+                return super.onContextItemSelected(item);
         }
-        else if(valorItem==2131296362){
-            eliminarPaciente(pacienteRecuperado);
-            return true;
-        }
-        else {
-            return false;
-        }
+    }
 
 
         /*switch (item.getItemId()){
@@ -121,7 +117,7 @@ public class ActivityAdministrarPaciente extends Activity {
                 eliminarPaciente(pacienteRecuperado);
                 valor=true;
         }*/
-    }
+
 
     public void eliminarPaciente(final Paciente paciente){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

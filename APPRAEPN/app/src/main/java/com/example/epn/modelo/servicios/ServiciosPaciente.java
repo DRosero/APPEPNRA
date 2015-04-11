@@ -22,7 +22,7 @@ public class ServiciosPaciente<SQLiteDataBase> {
     private BaseHelper baseHelper;
 
     private SQLiteDatabase sqLiteDatabase;
-    private String columnas[]={"idpaciente","nombre","apellido","direccion"};
+    private String columnas[]={"idPaciente","nombre","apellido","direccion"};
 
     public ServiciosPaciente(Context context) {
         baseHelper=new BaseHelper(context);
@@ -71,9 +71,9 @@ public class ServiciosPaciente<SQLiteDataBase> {
 
     public void actualizar(Paciente paciente) {
         ContentValues values = new ContentValues();
-        values.put("nombre",paciente.getNombre().toString());
-        /*values.put("apellido",paciente.getApellido().toString());
-        values.put("direccion",paciente.getDireccion().toString());*/
+        values.put("nombre",paciente.getNombre());
+        values.put("apellido",paciente.getApellido());
+        values.put("direccion",paciente.getDireccion());
 
         sqLiteDatabase.update("PACIENTE",values,"idPaciente="+paciente.getIdpaciente(),null);
     }
