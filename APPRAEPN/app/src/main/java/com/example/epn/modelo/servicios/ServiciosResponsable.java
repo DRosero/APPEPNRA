@@ -4,10 +4,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.epn.basehelper.BaseHelper;
 import com.example.epn.modelo.entidades.Responsable;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,8 +69,6 @@ public class ServiciosResponsable {
     }
 
     public void actualizar(Responsable responsable){
-
-        abrirConexion();
         ContentValues valores = new ContentValues();
 
         valores.put("nombreResponsable",responsable.getNombre().toString());
@@ -80,11 +80,19 @@ public class ServiciosResponsable {
 
         sqLiteDatabase.update("RESPONSABLE", valores, "idResponsable=" + responsable.getIdresponsable(), null);
         System.out.println("Responsable Actualizado en ServicioResponsable, OK");
-        cerrarConexion();
     }
 
     public void eliminar(Responsable responsable){
         sqLiteDatabase.delete("RESPONSABLE", "idResponsable=" + responsable.getIdresponsable(), null);
+    }
+
+    public Cursor recuperarResponsable(int rowid) throws SQLException {
+        Cursor cursor = sqLiteDatabase.query("RESPONSABLE", columnas,
+                "idResponsable=" + rowid, null, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        return cursor;
     }
 
 }

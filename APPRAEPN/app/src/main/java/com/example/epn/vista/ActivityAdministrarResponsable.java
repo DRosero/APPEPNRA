@@ -94,9 +94,8 @@ public class ActivityAdministrarResponsable extends Activity {
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.actualizar:
-                /*startActivity(new Intent(ContactosActivity.this,
-                        ActualizarActivity.class).putExtras(extras));
-                return true;*/
+                startActivity(new Intent(this, ActivityActualizarResponsable.class).putExtras(extras));
+                return true;
             case R.id.eliminar:
                 eliminarResponsable(responsable);
                 return true;
