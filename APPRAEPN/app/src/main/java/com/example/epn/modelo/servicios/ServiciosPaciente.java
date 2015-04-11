@@ -70,12 +70,14 @@ public class ServiciosPaciente<SQLiteDataBase> {
     }
 
     public void actualizar(Paciente paciente) {
+        abrirBD();
         ContentValues values = new ContentValues();
         values.put("nombre",paciente.getNombre());
         values.put("apellido",paciente.getApellido());
         values.put("direccion",paciente.getDireccion());
 
         sqLiteDatabase.update("PACIENTE",values,"idPaciente="+paciente.getIdpaciente(),null);
+        cerrarBD();
     }
 
     public Cursor recuperarPaciente(int rowid) throws SQLException {
@@ -87,9 +89,4 @@ public class ServiciosPaciente<SQLiteDataBase> {
         }
         return cursor;
     }
-
-
-
-
-
 }

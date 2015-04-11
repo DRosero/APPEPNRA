@@ -18,7 +18,7 @@ import java.util.List;
 public class ServiciosResponsable {
 
     private BaseHelper baseHelper;
-    private SQLiteDatabase sqLiteDatabase;
+    private SQLiteDatabase sqLiteDatabase; //= this.getWritableDatabase;
     private String columnas[]={"idResponsable","nombreResponsable","telefonoMovil","telefonoFijo","direccionHogar","direccionTrabajo","prioridadResponsable"};
 
     public ServiciosResponsable(Context contexto){
@@ -67,6 +67,8 @@ public class ServiciosResponsable {
     }
 
     public void actualizar(Responsable responsable){
+
+        abrirConexion();
         ContentValues valores = new ContentValues();
 
         valores.put("nombreResponsable",responsable.getNombre().toString());
@@ -78,6 +80,7 @@ public class ServiciosResponsable {
 
         sqLiteDatabase.update("RESPONSABLE", valores, "idResponsable=" + responsable.getIdresponsable(), null);
         System.out.println("Responsable Actualizado en ServicioResponsable, OK");
+        cerrarConexion();
     }
 
     public void eliminar(Responsable responsable){
