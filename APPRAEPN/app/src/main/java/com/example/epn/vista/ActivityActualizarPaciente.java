@@ -19,13 +19,13 @@ import java.sql.SQLException;
 public class ActivityActualizarPaciente extends Activity {
 
     ServiciosPaciente serviciosPaciente;
-    Paciente paciente=new Paciente();
+    Paciente paciente;
 
     EditText txtnombre;
     EditText txtapellido;
     EditText txtdireccion;
 
-    Bundle extras;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,29 +36,35 @@ public class ActivityActualizarPaciente extends Activity {
         txtnombre=(EditText)findViewById(R.id.txtNombrePaciente);
         txtdireccion=(EditText)findViewById(R.id.txtDireccionPaciente);
 
-        serviciosPaciente=new ServiciosPaciente(this);
-        extras=this.getIntent().getExtras();
-        cargarPaciente(extras.getInt("idPaciente"));
+        Bundle extras=this.getIntent().getExtras();
 
+        paciente=new Paciente();
+        serviciosPaciente=new ServiciosPaciente(this);
+        cargarPaciente(extras.getInt("idPaciente"));
     }
 
     public void cargarPaciente(int id) {
         serviciosPaciente.abrirBD();
-
-        Cursor cursor=null;
         try {
-            cursor=serviciosPaciente.recuperarPaciente(id);
-        }
+            Cursor c=serviciosPaciente.recuperarPaciente(id);
+            if(c!=null){
+                paciente.setIdpaciente(c.getInt(0));
+                paciente.setNombre(c.getString(1));
+                paciente.setApellido(c.getString(2));
+                paciente.setDireccion(c.getString(3));
 
-        catch (SQLException e) {
+                txtnombre.setText(paciente.getNombre());
+                txtapellido.setText(paciente.getApellido());
+                txtdireccion.setText(paciente.getDireccion());
+            }
+            else {
+                Toast.makeText(this, "El paciente no existe", Toast.LENGTH_LONG).show();
+            }
+            serviciosPaciente.cerrarBD();
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        txtnombre.setText(cursor.getString(cursor.getColumnIndex("nombre")));
-        txtapellido.setText(cursor.getString(cursor.getColumnIndex("apellido")));
-        txtdireccion.setText(cursor.getString(cursor.getColumnIndex("direccion")));
-
-        serviciosPaciente.cerrarBD();
     }
 
     public void irActualizar(View view){

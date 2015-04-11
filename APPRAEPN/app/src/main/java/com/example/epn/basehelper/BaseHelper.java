@@ -8,15 +8,27 @@ import android.util.Log;
 /**
  * Created by Diego on 01/04/2015.
  */
-public class BaseHelper extends SQLiteOpenHelper implements TablasBddInterface{
+public class BaseHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 3;//version 2015-04-11
-    public static final String DATABASE_NAME = "bdtesis.db";
+    //sentencia para tabla Paciente
+    String sentCrearPaciente="CREATE TABLE PACIENTE "+
+            "(idPaciente INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "nombre TEXT NOT NULL," +
+            "apellido TEXT NOT NULL," +
+            "direccion TEXT NOT NULL)";
 
-    public BaseHelper(Context contexto){
+    //sentencia para tabla Responsable
+    String sentCrearResponsable="CREATE TABLE RESPONSABLE"+
+            "(idResponsable INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "nombreResponsable TEXT NOT NULL," +
+            "telefonoMovil TEXT NOT NULL,"+
+            "telefonoFijo TEXT NOT NULL,"+
+            "direccionHogar TEXT NOT NULL,"+
+            "direccionTrabajo TEXT NOT NULL,"+
+            "prioridadResponsable INTEGER NOT NULL)";
 
-        super(contexto,DATABASE_NAME,null,DATABASE_VERSION);
-
+    public BaseHelper(Context context){
+        super(context,"bdtesis",null,1);
     }
 
     @Override
@@ -30,33 +42,14 @@ public class BaseHelper extends SQLiteOpenHelper implements TablasBddInterface{
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.w("DBAdapter", "Upgrading database from version " + oldVersion
                 + " to " + newVersion + ", which will destroy all old data");
-        db.execSQL("DROP TABLE IF EXISTS "+ tablaPaciente);
-        db.execSQL("DROP TABLE IF EXISTS "+ tablaResponsable);
+        db.execSQL("DROP TABLE IF EXISTS PACIENTE ");
+        db.execSQL("DROP TABLE IF EXISTS RESPONSABLE");
         onCreate(db);
     }
 
-<<<<<<< HEAD
+
     @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         super.onDowngrade(db, oldVersion, newVersion);
     }
-=======
-    //sentencia para tabla Paciente
-    String sentCrearPaciente="CREATE TABLE "+tablaPaciente+
-            "(idPaciente INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "nombre TEXT NOT NULL," +
-            "apellido TEXT NOT NULL," +
-            "direccion TEXT NOT NULL)";
-
-    //sentencia para tabla Responsable
-    String sentCrearResponsable="CREATE TABLE "+tablaResponsable+
-            "(idResponsable INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "nombreResponsable TEXT NOT NULL," +
-            "telefonoMovil TEXT NOT NULL,"+
-            "telefonoFijo TEXT NOT NULL,"+
-            "direccionHogar TEXT NOT NULL,"+
-            "direccionTrabajo TEXT NOT NULL,"+
-            "prioridadResponsable INTEGER NOT NULL)";
-
->>>>>>> origin/Desarrollo
 }
