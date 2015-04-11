@@ -44,6 +44,7 @@ public class ActivityRegistrarPaciente extends Activity {
     }
 
     public void irGuardarP(View view){
+
         Paciente paciente=new Paciente();
 
         try {

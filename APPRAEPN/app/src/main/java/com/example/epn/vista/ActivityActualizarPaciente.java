@@ -66,8 +66,8 @@ public class ActivityActualizarPaciente extends Activity {
         try {
             serviciosPaciente.abrirBD();
             paciente.setNombre(txtnombre.getText().toString());
-            /*paciente.setApellido(txtapellido.getText().toString());
-            paciente.setDireccion(txtdireccion.getText().toString());*/
+            paciente.setApellido(txtapellido.getText().toString());
+            paciente.setDireccion(txtdireccion.getText().toString());
 
             serviciosPaciente.actualizar(paciente);
             Toast.makeText(getApplicationContext(), "Datos de Paciente Actualizado", Toast.LENGTH_SHORT).show();

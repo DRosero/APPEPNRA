@@ -109,9 +109,10 @@ public class ActivityAdministrarResponsable extends Activity {
 
     private void darPrioridad(Responsable responsableRecuperado) {
         serviciosResponsable.abrirConexion();
-        List<Responsable> responsableslista =serviciosResponsable.listarResponsbale();
 
-        for(Responsable responsable: responsableslista){
+        List<Responsable> responsables = serviciosResponsable.listarResponsbale();
+
+        for (Responsable responsable : responsables) {
             responsable.setPrioridadResponsable(0);
             serviciosResponsable.actualizar(responsable);
         }
@@ -123,6 +124,7 @@ public class ActivityAdministrarResponsable extends Activity {
         Toast.makeText(getApplicationContext(), "Prioridad actualizada",
                 Toast.LENGTH_SHORT).show();
     }
+
 
     public void eliminarResponsable(final Responsable responsable) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
