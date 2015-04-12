@@ -201,26 +201,26 @@ public class ActivityRegistrarResponsable extends Activity {
         startActivity(intent);
     }
 
-<<<<<<< HEAD
-    public void irGuardar(View view){
+
+    /*public void irGuardar(View view){
         Responsable responsable=new Responsable();
         int verificador= irValidar();
 
         if (verificador==1){
-        try{
+        try {
             responsable.setNombre(txtNombre.getText().toString());
             responsable.setTelefonoMovil(txtNumeroMovil.getText().toString());
             responsable.setTelefonoFijo(txtNumeroFijo.getText().toString());
             responsable.setDireccionHogar(txtDireccionHogar.getText().toString());
             responsable.setDireccionTrabajo(getTxtDireccionTrabajo.getText().toString());
-            if (existePrioritario()==true) {
+            if (existePrioritario() == true) {
                 responsable.setPrioridadResponsable(0);
             } else {
                 responsable.setPrioridadResponsable(1);
             }
-=======
+        }*/
+
     public void irGuardar(View view) {
->>>>>>> origin/Desarrollo
 
         Responsable responsable = new Responsable();
         int verificador = validarDatosInterfaz();

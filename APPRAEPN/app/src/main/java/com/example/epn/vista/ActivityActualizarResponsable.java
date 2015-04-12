@@ -61,6 +61,7 @@ public class ActivityActualizarResponsable extends Activity {
                 responsable.setTelefonoFijo(c.getString(3));
                 responsable.setDireccionHogar(c.getString(4));
                 responsable.setDireccionTrabajo(c.getString(5));
+                responsable.setPrioridadResponsable(c.getInt(6));
 
                 txtNombre.setText(responsable.getNombre());
                 txtNumeroFijo.setText(responsable.getTelefonoFijo());
@@ -84,7 +85,7 @@ public class ActivityActualizarResponsable extends Activity {
             responsable.setTelefonoMovil(txtNumeroMovil.getText().toString());
             responsable.setDireccionHogar(txtDireccionHogar.getText().toString());
             responsable.setDireccionTrabajo(getTxtDireccionTrabajo.getText().toString());
-            responsable.setTelefonoFijo(txtNumeroFijo.getText().toString());
+            responsable.setTelefonoFijo(txtNumeroFijo.getText().toString());           
             responsable.setPrioridadResponsable(responsable.getPrioridadResponsable());
 
             serviciosResponsable.actualizar(responsable);
