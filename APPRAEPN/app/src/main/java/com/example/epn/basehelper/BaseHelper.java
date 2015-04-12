@@ -8,17 +8,20 @@ import android.util.Log;
 /**
  * Created by Diego on 01/04/2015.
  */
-public class BaseHelper extends SQLiteOpenHelper {
+public class BaseHelper extends SQLiteOpenHelper implements TablasBddInterface{
+
+    public static final int DATABASE_VERSION = 3;//version 2015-04-11
+    public static final String DATABASE_NAME = "bdtesis.db";
 
     //sentencia para tabla Paciente
-    String sentCrearPaciente="CREATE TABLE PACIENTE "+
+    String sentCrearPaciente="CREATE TABLE "+tablaPaciente+
             "(idPaciente INTEGER PRIMARY KEY AUTOINCREMENT," +
             "nombre TEXT NOT NULL," +
             "apellido TEXT NOT NULL," +
             "direccion TEXT NOT NULL)";
 
     //sentencia para tabla Responsable
-    String sentCrearResponsable="CREATE TABLE RESPONSABLE"+
+    String sentCrearResponsable="CREATE TABLE "+tablaResponsable+
             "(idResponsable INTEGER PRIMARY KEY AUTOINCREMENT," +
             "nombreResponsable TEXT NOT NULL," +
             "telefonoMovil TEXT NOT NULL,"+
@@ -28,7 +31,7 @@ public class BaseHelper extends SQLiteOpenHelper {
             "prioridadResponsable INTEGER NOT NULL)";
 
     public BaseHelper(Context context){
-        super(context,"bdtesis",null,1);
+        super(context,DATABASE_NAME,null,DATABASE_VERSION);
     }
 
     @Override
@@ -42,8 +45,8 @@ public class BaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.w("DBAdapter", "Upgrading database from version " + oldVersion
                 + " to " + newVersion + ", which will destroy all old data");
-        db.execSQL("DROP TABLE IF EXISTS PACIENTE ");
-        db.execSQL("DROP TABLE IF EXISTS RESPONSABLE");
+        db.execSQL("DROP TABLE IF EXISTS "+tablaPaciente);
+        db.execSQL("DROP TABLE IF EXISTS "+tablaResponsable);
         onCreate(db);
     }
 

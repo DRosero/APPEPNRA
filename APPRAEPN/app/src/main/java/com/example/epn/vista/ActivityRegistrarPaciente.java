@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.example.epn.appraepn.R;
 import com.example.epn.basehelper.BaseHelper;
 import com.example.epn.controlador.ControladorPaciente;
@@ -34,41 +35,70 @@ public class ActivityRegistrarPaciente extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_registrar_paciente);
         setTitle("Nuevo Registro de Paciente");
+
         txtnombre = (EditText) findViewById(R.id.txtNombrePaciente);
         txtapellido = (EditText) findViewById(R.id.txtApellidoPaciente);
         txtdireccion = (EditText) findViewById(R.id.txtDireccionPaciente);
-        controladorPaciente=new ControladorPaciente();
-        serviciosPaciente=new ServiciosPaciente(this);
+
+        controladorPaciente = new ControladorPaciente();
+        serviciosPaciente = new ServiciosPaciente(this);
     }
 
-    public void irGuardarP(View view){
+    public void irGuardarP(View view) {
 
-        Paciente paciente=new Paciente();
+        Paciente paciente = new Paciente();
+        int verificador = validarDatosInterfaz();
 
-        try {
-            paciente.setNombre(txtnombre.getText().toString());
-            paciente.setApellido(txtapellido.getText().toString());
-            paciente.setDireccion(txtdireccion.getText().toString());
-            serviciosPaciente.abrirBD();
-            serviciosPaciente.insertar(paciente);
-            Toast.makeText(getApplicationContext(), "Paciente Ingresado", Toast.LENGTH_SHORT).show();
-            serviciosPaciente.cerrarBD();
-            Intent intent=new Intent(this,ActivityAdministrarPaciente.class);
-            startActivity(intent);
-            //controladorPaciente.irGuardar(txtnombre.getText().toString(),txtapellido.getText().toString(),txtdireccion.getText().toString());
+        if (verificador == 1) {
+
+            try {
+
+                tomarDatosInterfazPaciente(paciente);
+
+                serviciosPaciente.abrirBD();
+                serviciosPaciente.insertar(paciente);
+                Toast.makeText(getApplicationContext(), "Datos de Paciente ingresados correctamente", Toast.LENGTH_SHORT).show();
+                serviciosPaciente.cerrarBD();
+
+                Intent intent = new Intent(this, ActivityAdministrarPaciente.class);
+                startActivity(intent);
+
+            }
+            catch (Exception e) {
+                Toast.makeText(getApplicationContext(), "No se puede guardar paciente", Toast.LENGTH_SHORT).show();
+            }
         }
-        catch (Exception e){
-            Toast.makeText(getApplicationContext(),"No se puede guardar",Toast.LENGTH_SHORT).show();
+
+        else {
+            Toast.makeText(getApplicationContext(), "Nombre, Apellido y Dirección son obligatorios", Toast.LENGTH_SHORT).show();
+
         }
     }
 
-    public void irCancelar (View view){
+    private void tomarDatosInterfazPaciente(Paciente paciente) {
+        paciente.setNombre(txtnombre.getText().toString());
+        paciente.setApellido(txtapellido.getText().toString());
+        paciente.setDireccion(txtdireccion.getText().toString());
+    }
+
+    public int validarDatosInterfaz() {
+
+        if (txtnombre.getText().toString().equals("") || txtapellido.getText().toString().equals("") || txtdireccion.getText().toString().equals("")) {
+            return 0;
+        } else {
+            Toast.makeText(getApplicationContext(), "Campos Llenos", Toast.LENGTH_SHORT).show();
+            return 1;
+        }
+    }
+
+    public void irCancelar(View view) {
         onPause();
-        Toast.makeText(getApplicationContext(),"Listando Paciente", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Listando Paciente", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, ActivityAdministrarPaciente.class);
-        startActivity(intent );
+        startActivity(intent);
     }
 
 

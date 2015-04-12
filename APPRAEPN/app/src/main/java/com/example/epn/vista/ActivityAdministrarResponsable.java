@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import com.example.epn.MainActivity;
 import com.example.epn.appraepn.R;
 import com.example.epn.modelo.entidades.Responsable;
@@ -29,30 +30,29 @@ public class ActivityAdministrarResponsable extends Activity {
     private ListView lstResponsable;
     private Responsable responsable;
 
-    public void irNuevoResponsable(View vista){
+    public void irNuevoResponsable(View vista) {
         try {
             serviciosResponsable.abrirConexion();
-            List<Responsable> responsable=serviciosResponsable.listarResponsbale();
+            List<Responsable> responsable = serviciosResponsable.listarResponsbale();
             serviciosResponsable.cerrarConexion();
 
-            if(responsable.isEmpty()){
-                Toast.makeText(getApplicationContext(),"No existen Responsables registrados",Toast.LENGTH_SHORT).show();
+            if (responsable.isEmpty()) {
+                Toast.makeText(getApplicationContext(), "No existen Responsables registrados", Toast.LENGTH_SHORT).show();
             }
 
             Intent intent = new Intent(this, ActivityRegistrarResponsable.class);
             startActivity(intent);//hasta aqui hice hoy
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "No se puede abrir ventana Registrar Respnsable", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void irRegresar (View view){
+    public void irRegresar(View view) {
         onPause();
-        Toast.makeText(getApplicationContext(),"Menú Principal", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Menú Principal", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent );
+        startActivity(intent);
     }
 
     @Override
@@ -62,19 +62,19 @@ public class ActivityAdministrarResponsable extends Activity {
     }
 
     @Override
-     protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_administrar_responsable);
-        lstResponsable=(ListView)findViewById(R.id.lstResponsable);
+        lstResponsable = (ListView) findViewById(R.id.lstResponsable);
         extras = new Bundle();
-        serviciosResponsable=new ServiciosResponsable(this);
+        serviciosResponsable = new ServiciosResponsable(this);
 
         registerForContextMenu(lstResponsable);
         lstResponsable.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                responsable=(Responsable)parent.getItemAtPosition(position);
-                extras.putInt("idResponsable",responsable.getIdresponsable());
+                responsable = (Responsable) parent.getItemAtPosition(position);
+                extras.putInt("idResponsable", responsable.getIdresponsable());
                 return false;
             }
         });
@@ -149,10 +149,8 @@ public class ActivityAdministrarResponsable extends Activity {
                     serviciosResponsable.cerrarConexion();
 
                     llenarListView();
-                }
-
-                catch (Exception exception) {
-                    Toast.makeText(getApplicationContext(),"Error al eliminar esta en el catch",Toast.LENGTH_SHORT).show();
+                } catch (Exception exception) {
+                    Toast.makeText(getApplicationContext(), "Error al eliminar esta en el catch", Toast.LENGTH_SHORT).show();
                 }
             }
         });
