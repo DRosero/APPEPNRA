@@ -214,7 +214,7 @@ public class ActivityRegistrarResponsable extends Activity {
             responsable.setTelefonoFijo(txtNumeroFijo.getText().toString());
             responsable.setDireccionHogar(txtDireccionHogar.getText().toString());
             responsable.setDireccionTrabajo(getTxtDireccionTrabajo.getText().toString());
-            if (existePrioritario()) {
+            if (existePrioritario()==true) {
                 responsable.setPrioridadResponsable(0);
             } else {
                 responsable.setPrioridadResponsable(1);
