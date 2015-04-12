@@ -12,11 +12,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import com.example.epn.MainActivity;
 import com.example.epn.appraepn.R;
 import com.example.epn.basehelper.BaseHelper;
 import com.example.epn.modelo.entidades.Paciente;
 import com.example.epn.modelo.servicios.ServiciosPaciente;
+
 import java.util.List;
 
 /**
@@ -29,30 +31,28 @@ public class ActivityAdministrarPaciente extends Activity {
     private Paciente pacienteRecuperado;
 
 
-    public void irNuevoPaciente(View vista){
+    public void irNuevoPaciente(View vista) {
         try {
             serviciosPaciente.abrirBD();
-            List<Paciente>paciente=serviciosPaciente.recuperarTodos();
+            List<Paciente> paciente = serviciosPaciente.recuperarTodos();
             serviciosPaciente.cerrarBD();
 
-            if(paciente.isEmpty()){
+            if (paciente.isEmpty()) {
 
                 Intent intent = new Intent(this, ActivityRegistrarPaciente.class);
                 startActivity(intent);
-            }
-            else {
+            } else {
                 serviciosPaciente.cerrarBD();
-                Toast.makeText(getApplicationContext(),"El paciente ya a sido ingresado",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "El paciente ya a sido ingresado", Toast.LENGTH_SHORT).show();
             }
-        }
-        catch(Exception e){
-            Toast.makeText(getApplicationContext(),"No se puede abrir ventana Registrar Paciente", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "No se puede abrir ventana Registrar Paciente", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void irRegresar (View view){
+    public void irRegresar(View view) {
         onPause();
-        Toast.makeText(getApplicationContext(),"Menú Principal", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Menú Principal", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -86,7 +86,7 @@ public class ActivityAdministrarPaciente extends Activity {
         serviciosPaciente.cerrarBD();
     }
 
-  @Override
+    @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         getMenuInflater().inflate(R.menu.menu_paciente, menu);
@@ -119,7 +119,7 @@ public class ActivityAdministrarPaciente extends Activity {
         }*/
 
 
-    public void eliminarPaciente(final Paciente paciente){
+    public void eliminarPaciente(final Paciente paciente) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Borrar Paciente");
         builder.setMessage("¿Está Seguro que desea borrarlo?");
@@ -129,13 +129,13 @@ public class ActivityAdministrarPaciente extends Activity {
             public void onClick(DialogInterface dialog, int which) {
                 serviciosPaciente.abrirBD();
                 serviciosPaciente.eliminar(paciente);
-                Toast.makeText(getApplicationContext(),"Registro Eliminado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Registro Eliminado", Toast.LENGTH_SHORT).show();
                 serviciosPaciente.cerrarBD();
                 llenarListView();
             }
         });
 
-        builder.setNegativeButton("Cancelar",new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -145,9 +145,6 @@ public class ActivityAdministrarPaciente extends Activity {
 
         builder.show();
     }
-
-
-    
 
 
 }

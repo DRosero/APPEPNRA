@@ -43,18 +43,18 @@ public class ActivityRegistrarResponsable extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar_responsable);
-        serviciosResponsable=new ServiciosResponsable(this);
+        serviciosResponsable = new ServiciosResponsable(this);
 
 
         txtNombre = (EditText) findViewById(R.id.txtNombreResponsable);
         txtNumeroMovil = (EditText) findViewById(R.id.txtTelefonoMovil);
-        txtId= (TextView) findViewById(R.id.txtIdResponsable);
+        txtId = (TextView) findViewById(R.id.txtIdResponsable);
         txtNumeroFijo = (EditText) findViewById(R.id.txtTelefonoFijo);
-        txtDireccionHogar=(EditText) findViewById(R.id.txtDireccionHogarResponsable);
-        getTxtDireccionTrabajo=(EditText) findViewById(R.id.txtDireccionTrabajoResponsable);
+        txtDireccionHogar = (EditText) findViewById(R.id.txtDireccionHogarResponsable);
+        getTxtDireccionTrabajo = (EditText) findViewById(R.id.txtDireccionTrabajoResponsable);
 
-        btnSeleccionar =(Button)findViewById(R.id.btnSeleccionarContacto);
-        btnGuardar =(Button)findViewById(R.id.btnGuardarResponsable);
+        btnSeleccionar = (Button) findViewById(R.id.btnSeleccionarContacto);
+        btnGuardar = (Button) findViewById(R.id.btnGuardarResponsable);
 
         btnSeleccionar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,13 +83,13 @@ public class ActivityRegistrarResponsable extends Activity {
 
     private void renderContact(Uri uri) {
 
-        txtNombre.setText(tomarNombre(uri));
-        txtNumeroMovil.setText(tomarNumero(uri));
-        txtId.setText(tomarId(uri));
+        txtNombre.setText(tomarNombreContactos(uri));
+        txtNumeroMovil.setText(tomarNumeroContactos(uri));
+        txtId.setText(tomarIdContactos(uri));
 
     }
 
-    private String tomarNombre(Uri uri) {
+    private String tomarNombreContactos(Uri uri) {
 
         //Valor a retornar
         String name = null;
@@ -102,7 +102,7 @@ public class ActivityRegistrarResponsable extends Activity {
         Cursor c = getContentResolver().query(uri, projection, null, null, null);
 
         //Consultando el primer y único resultado elegido
-        if(c.moveToFirst()){
+        if (c.moveToFirst()) {
             name = c.getString(0);
         }
 
@@ -112,7 +112,7 @@ public class ActivityRegistrarResponsable extends Activity {
         return name;
     }
 
-    private String tomarNumero(Uri uri) {
+    private String tomarNumeroContactos(Uri uri) {
 
         String number = null;
         //Obtener una instancia del Content Resolver
@@ -123,7 +123,7 @@ public class ActivityRegistrarResponsable extends Activity {
         Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
 
         //Consultando el primer y único resultado elegido
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             //Recuperar el número de teléfono de la columna NÚMERO
             int column = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
             number = cursor.getString(column);
@@ -131,7 +131,7 @@ public class ActivityRegistrarResponsable extends Activity {
         return number;
     }
 
-    private String tomarId(Uri uri){
+    private String tomarIdContactos(Uri uri) {
         /*
         Variables temporales para el id
          */
@@ -140,7 +140,7 @@ public class ActivityRegistrarResponsable extends Activity {
         /*
         Obtener el _ID del contacto
          */
-        Cursor contactCursor = getContentResolver().query(uri, new String[]{ContactsContract.Contacts._ID},null, null, null);
+        Cursor contactCursor = getContentResolver().query(uri, new String[]{ContactsContract.Contacts._ID}, null, null, null);
 
         if (contactCursor.moveToFirst()) {
             id = contactCursor.getString(0);
@@ -150,9 +150,7 @@ public class ActivityRegistrarResponsable extends Activity {
     }
 
     private String getPhone(Uri uri) {// para tomar solo el numero que sea de tipo mobile.. TIENE ERRORES....
-        /*
-        Variables temporales para el id y el teléfono
-         */
+
         String id = null;
         String phone = null;
 
@@ -160,7 +158,7 @@ public class ActivityRegistrarResponsable extends Activity {
         /*
         Obtener el _ID del contacto
          */
-        Cursor contactCursor = getContentResolver().query(uri, new String[]{ContactsContract.Contacts._ID},null, null, null);
+        Cursor contactCursor = getContentResolver().query(uri, new String[]{ContactsContract.Contacts._ID}, null, null, null);
 
         if (contactCursor.moveToFirst()) {
             id = contactCursor.getString(0);
@@ -174,7 +172,7 @@ public class ActivityRegistrarResponsable extends Activity {
          */
         String selectionArgs =
                 ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ? AND " +
-                        ContactsContract.CommonDataKinds.Phone.TYPE+"= " +
+                        ContactsContract.CommonDataKinds.Phone.TYPE + "= " +
                         ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE;
 
         /*
@@ -182,10 +180,10 @@ public class ActivityRegistrarResponsable extends Activity {
          */
         Cursor phoneCursor = getContentResolver().query(
                 ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                new String[] { ContactsContract.CommonDataKinds.Phone.NUMBER },
+                new String[]{ContactsContract.CommonDataKinds.Phone.NUMBER},
                 selectionArgs
                 ,
-                new String[] { id },
+                new String[]{id},
                 null
         );
         if (phoneCursor.moveToFirst()) {
@@ -196,54 +194,47 @@ public class ActivityRegistrarResponsable extends Activity {
         return phone;
     }
 
-    public void irCancelar (View view){
+    public void irCancelar(View view) {
         onPause();
         Toast.makeText(getApplicationContext(), "Listando Responsables", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, ActivityAdministrarResponsable.class);
-        startActivity(intent );
+        startActivity(intent);
     }
 
-    public void irGuardar(View view){
-        Responsable responsable=new Responsable();
-        int verificador= irValidar();
+    public void irGuardar(View view) {
 
-        if (verificador==1){
-        try{
-            responsable.setNombre(txtNombre.getText().toString());
-            responsable.setTelefonoMovil(txtNumeroMovil.getText().toString());
-            responsable.setTelefonoFijo(txtNumeroFijo.getText().toString());
-            responsable.setDireccionHogar(txtDireccionHogar.getText().toString());
-            responsable.setDireccionTrabajo(getTxtDireccionTrabajo.getText().toString());
-            if (existePrioritario()) {
-                responsable.setPrioridadResponsable(0);
-            } else {
-                responsable.setPrioridadResponsable(1);
+        Responsable responsable = new Responsable();
+        int verificador = validarDatosInterfaz();
+
+        if (verificador == 1) {
+            try {
+
+                tomarDatosInterfazResponsable(responsable);
+
+                serviciosResponsable.abrirConexion();
+                serviciosResponsable.insertar(responsable);
+                Toast.makeText(getApplicationContext(), "Datos de Responsable guardados correctamente", Toast.LENGTH_SHORT).show();
+                serviciosResponsable.cerrarConexion();
+
+                Intent intent = new Intent(this, ActivityAdministrarResponsable.class);
+                startActivity(intent);
             }
-
-            serviciosResponsable.abrirConexion();
-            serviciosResponsable.insertar(responsable);
-            Toast.makeText(getApplicationContext(), "Guardando Contacto", Toast.LENGTH_SHORT).show();
-            serviciosResponsable.cerrarConexion();
-
+            catch (Exception e) {
+                Toast.makeText(getApplicationContext(), "No se pudo registrar Responsable Nuevo", Toast.LENGTH_SHORT).show();
+            }
         }
-        catch(Exception e){
 
-        }
-        }
-        else{
+        else {
             Toast.makeText(getApplicationContext(), "Nombre y Número Móvil son obligatorios", Toast.LENGTH_SHORT).show();
-
         }
 
     }
-    public int irValidar(){
 
-        if(txtNombre.getText().toString().equals("") || txtNumeroMovil.getText().toString().equals("")){
+    public int validarDatosInterfaz() {
+
+        if (txtNombre.getText().toString().equals("") || txtNumeroMovil.getText().toString().equals("")) {
             return 0;
-        }
-        else{
-            Toast.makeText(getApplicationContext(), "Campos Correctos", Toast.LENGTH_SHORT).show();
-            System.out.println("Validar que numero telefonico sea el celular");
+        } else {
             return 1;
         }
     }
@@ -252,9 +243,9 @@ public class ActivityRegistrarResponsable extends Activity {
         serviciosResponsable.abrirConexion();
 
         List<Responsable> responsables = serviciosResponsable.listarResponsbale();
-        if (responsables.size()> 0) {
+        if (responsables.size() > 0) {
             for (Responsable responsable : responsables) {
-                if (responsable.getPrioridadResponsable()==1) {
+                if (responsable.getPrioridadResponsable() == 1) {
                     serviciosResponsable.cerrarConexion();
                     return true;
                 }
@@ -263,5 +254,21 @@ public class ActivityRegistrarResponsable extends Activity {
         serviciosResponsable.cerrarConexion();
         return false;
 
+    }
+
+    public void tomarDatosInterfazResponsable(Responsable responsable) {
+
+        responsable.setNombre(txtNombre.getText().toString());
+        responsable.setTelefonoMovil(txtNumeroMovil.getText().toString());
+        responsable.setTelefonoFijo(txtNumeroFijo.getText().toString());
+        responsable.setDireccionHogar(txtDireccionHogar.getText().toString());
+        responsable.setDireccionTrabajo(getTxtDireccionTrabajo.getText().toString());
+
+        if (existePrioritario()) {
+            responsable.setPrioridadResponsable(0);
+        }
+        else {
+            responsable.setPrioridadResponsable(1);
+        }
     }
 }

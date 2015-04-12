@@ -35,16 +35,16 @@ public class ActivityActualizarResponsable extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actualizar_responsable);
-        txtNombre=(EditText)findViewById(R.id.txtNombreResponsable);
-        txtNumeroMovil=(EditText)findViewById(R.id.txtTelefonoMovil);
-        txtNumeroFijo=(EditText)findViewById(R.id.txtTelefonoFijo);
-        txtDireccionHogar=(EditText)findViewById(R.id.txtDireccionHogarResponsable);
-        getTxtDireccionTrabajo=(EditText)findViewById(R.id.txtDireccionTrabajoResponsable);
+        txtNombre = (EditText) findViewById(R.id.txtNombreResponsable);
+        txtNumeroMovil = (EditText) findViewById(R.id.txtTelefonoMovil);
+        txtNumeroFijo = (EditText) findViewById(R.id.txtTelefonoFijo);
+        txtDireccionHogar = (EditText) findViewById(R.id.txtDireccionHogarResponsable);
+        getTxtDireccionTrabajo = (EditText) findViewById(R.id.txtDireccionTrabajoResponsable);
 
-        Bundle extras=this.getIntent().getExtras();
+        Bundle extras = this.getIntent().getExtras();
 
-        responsable=new Responsable();
-        serviciosResponsable=new ServiciosResponsable(this);
+        responsable = new Responsable();
+        serviciosResponsable = new ServiciosResponsable(this);
         cargarResponsable(extras.getInt("idResponsable"));
 
     }
@@ -53,8 +53,8 @@ public class ActivityActualizarResponsable extends Activity {
 
         serviciosResponsable.abrirConexion();
         try {
-            Cursor c= serviciosResponsable.recuperarResponsable(id);
-            if(c!=null){
+            Cursor c = serviciosResponsable.recuperarResponsable(id);
+            if (c != null) {
                 responsable.setIdresponsable(c.getInt(0));
                 responsable.setNombre(c.getString(1));
                 responsable.setTelefonoMovil(c.getString(2));
@@ -67,8 +67,7 @@ public class ActivityActualizarResponsable extends Activity {
                 txtNumeroMovil.setText(responsable.getTelefonoMovil());
                 txtDireccionHogar.setText(responsable.getDireccionHogar());
                 getTxtDireccionTrabajo.setText(responsable.getDireccionTrabajo());
-            }
-            else {
+            } else {
                 Toast.makeText(this, "El responsable no existe", Toast.LENGTH_LONG).show();
             }
             serviciosResponsable.cerrarConexion();
@@ -77,7 +76,7 @@ public class ActivityActualizarResponsable extends Activity {
         }
     }
 
-    public void irActualizar(View view){
+    public void irActualizar(View view) {
 
         try {
             serviciosResponsable.abrirConexion();
@@ -92,9 +91,8 @@ public class ActivityActualizarResponsable extends Activity {
             Toast.makeText(getApplicationContext(), "Datos de Responsable Actualizado", Toast.LENGTH_SHORT).show();
             serviciosResponsable.cerrarConexion();
             startActivity(new Intent(this, ActivityAdministrarResponsable.class));
-        }
-        catch (Exception e){
-            Toast.makeText(getApplicationContext(),"No se puede actualizar",Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "No se puede actualizar", Toast.LENGTH_SHORT).show();
         }
     }
 }
