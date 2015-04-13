@@ -75,6 +75,14 @@ public class Responsable {
 
     @Override
     public String toString() {
+        String prioridad="";
+        if(this.getPrioridadResponsable()==1){
+            prioridad="llamada";
+        }
+        else {
+            prioridad="mensaje";
+        }
+
         return "Responsable{" +
                 "idresponsable=" + idresponsable +
                 ", nombre='" + nombre + '\'' +
@@ -82,7 +90,10 @@ public class Responsable {
                 ", telefonoFijo='" + telefonoFijo + '\'' +
                 ", direccionHogar='" + direccionHogar + '\'' +
                 ", direccionTrabajo='" + direccionTrabajo + '\'' +
-                ", prioridadResponsable=" + prioridadResponsable +
+
+
+
+                ", prioridadResponsable=" + prioridad +
                 '}';
     }
 }

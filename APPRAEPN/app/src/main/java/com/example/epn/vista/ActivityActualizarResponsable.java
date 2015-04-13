@@ -92,7 +92,9 @@ public class ActivityActualizarResponsable extends Activity {
             Toast.makeText(getApplicationContext(), "Datos de Responsable Actualizado", Toast.LENGTH_SHORT).show();
             serviciosResponsable.cerrarConexion();
             startActivity(new Intent(this, ActivityAdministrarResponsable.class));
-        } catch (Exception e) {
+        }
+
+        catch (Exception e) {
             Toast.makeText(getApplicationContext(), "No se puede actualizar", Toast.LENGTH_SHORT).show();
         }
     }
