@@ -25,11 +25,11 @@ import java.util.List;
  * Created by Diego on 01/04/2015.
  */
 public class ActivityAdministrarPaciente extends Activity {
+
     Bundle extras;
     private ServiciosPaciente serviciosPaciente;
     private ListView lstpaciente;
     private Paciente pacienteRecuperado;
-
 
     public void irNuevoPaciente(View vista) {
         try {
@@ -146,5 +146,8 @@ public class ActivityAdministrarPaciente extends Activity {
         builder.show();
     }
 
-
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, MainActivity.class));
+    }
 }

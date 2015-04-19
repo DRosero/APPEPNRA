@@ -14,10 +14,15 @@ import com.example.epn.modelo.servicios.ServiciosPaciente;
  */
 public class ControladorPaciente extends Activity{
     ServiciosPaciente serviciosPaciente;
+    BaseHelper baseHelper;
 
-    public ControladorPaciente() {
 
+
+    public ControladorPaciente(Context context) {
+        baseHelper=new BaseHelper(context);
     }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,13 +30,21 @@ public class ControladorPaciente extends Activity{
         serviciosPaciente=new ServiciosPaciente(this);
     }
 
-    public void irGuardar(String nombre,String apellido,String direccion){
+    public void irGuardar(Paciente paciente){
 
-        Paciente paciente=new Paciente();
+        //Paciente paciente=new Paciente();
 
-        paciente.setNombre(nombre);
+        /*paciente.setNombre(nombre);
         paciente.setApellido(apellido);
-        paciente.setDireccion(direccion);
+        paciente.setDireccion(direccion);*/
+
+        paciente.getNombre();
+        paciente.getApellido();
+        paciente.getDireccion();
+
+        System.out.println("Nombre"+paciente.getNombre());
+        System.out.println("Apellido"+paciente.getApellido());
+        System.out.println("Dirección"+paciente.getDireccion());
 
         try {
             serviciosPaciente.abrirBD();

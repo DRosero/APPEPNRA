@@ -164,5 +164,8 @@ public class ActivityAdministrarResponsable extends Activity {
         builder.show();
     }
 
-
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, MainActivity.class));
+    }
 }

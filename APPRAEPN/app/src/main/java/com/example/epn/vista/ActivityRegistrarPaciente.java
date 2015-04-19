@@ -43,7 +43,7 @@ public class ActivityRegistrarPaciente extends Activity {
         txtapellido = (EditText) findViewById(R.id.txtApellidoPaciente);
         txtdireccion = (EditText) findViewById(R.id.txtDireccionPaciente);
 
-        controladorPaciente = new ControladorPaciente();
+        controladorPaciente = new ControladorPaciente(this);
         serviciosPaciente = new ServiciosPaciente(this);
     }
 
@@ -101,7 +101,10 @@ public class ActivityRegistrarPaciente extends Activity {
         startActivity(intent);
     }
 
-
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this,ActivityAdministrarPaciente.class));
+    }
 }
 
 

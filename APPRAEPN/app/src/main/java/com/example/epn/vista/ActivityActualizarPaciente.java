@@ -83,4 +83,9 @@ public class ActivityActualizarPaciente extends Activity {
             Toast.makeText(getApplicationContext(), "No se puede actualizar", Toast.LENGTH_SHORT).show();
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this,ActivityAdministrarPaciente.class));
+    }
 }

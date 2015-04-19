@@ -290,4 +290,9 @@ public class ActivityRegistrarResponsable extends Activity {
             responsable.setPrioridadResponsable(1);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this,ActivityAdministrarResponsable.class));
+    }
 }
