@@ -16,13 +16,9 @@ public class ControladorPaciente extends Activity{
     ServiciosPaciente serviciosPaciente;
     BaseHelper baseHelper;
 
-
-
     public ControladorPaciente(Context context) {
         baseHelper=new BaseHelper(context);
     }
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

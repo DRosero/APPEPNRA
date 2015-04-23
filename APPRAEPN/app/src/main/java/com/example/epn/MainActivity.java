@@ -17,7 +17,6 @@ import com.example.epn.vista.ActivityAreaMovimientoPermitido;
 import com.example.epn.vista.ActivityEstablecerIntervaloAlertas;
 import com.example.epn.vista.ActivityEstablecerSitioCentral;
 
-
 public class MainActivity extends ActionBarActivity {
 
     @Override
@@ -25,7 +24,6 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
