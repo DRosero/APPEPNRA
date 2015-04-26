@@ -101,6 +101,10 @@ public class ActivityRegistrarPaciente extends Activity {
         startActivity(intent);
     }
 
+    public void irSitioCentral(View view){
+        startActivity(new Intent(this, ActivityEstablecerSitioCentral.class));
+    }
+
     @Override
     public void onBackPressed() {
         startActivity(new Intent(this,ActivityAdministrarPaciente.class));

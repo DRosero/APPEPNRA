@@ -111,4 +111,5 @@ public class MainActivity extends ActionBarActivity {
         Toast.makeText(getApplicationContext(),"Aplicación Pausada", Toast.LENGTH_SHORT).show();
         onStop();
     }
+
 }
