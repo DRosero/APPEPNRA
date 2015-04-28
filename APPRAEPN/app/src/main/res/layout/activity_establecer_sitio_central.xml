@@ -3,13 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <org.osmdroid.views.MapView
-        android:id="@+id/mapView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:clickable="true"
-        android:enabled="true"
-        />
+
 
     <LinearLayout
         android:id="@+id/searchPanel"
@@ -17,21 +11,75 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        >
-        <EditText
-            android:id="@+id/searchText"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            />
-        <Button
-            android:id="@+id/searchButton"
+        android:orientation="vertical">
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Search"
-            android:onClick="irBuscar"
-            />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Establecer Sitio Central"
+            android:id="@+id/lblTitulo"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre de Sitio:"
+            android:id="@+id/textView5"
+            android:layout_weight="1" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtNombreSitioCentral"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descripción"
+            android:id="@+id/lblDescripcion"
+            android:layout_weight="1" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Definir Imagen/Foto de Sitio"
+            android:id="@+id/btnDefinirImagenSitio"
+            android:layout_weight="1"
+            android:onClick="irDefinirImagen"/>
     </LinearLayout>
+
+    <org.osmdroid.views.MapView
+        android:id="@+id/mapView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:clickable="true"
+        android:enabled="true"
+        android:layout_below="@+id/searchPanel" />
+
+    <EditText
+        android:id="@+id/searchText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_below="@+id/searchPanel"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/searchButton" />
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:onClick="irBuscar"
+        android:layout_below="@+id/searchPanel"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>
 
 

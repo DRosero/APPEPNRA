@@ -20,7 +20,6 @@ public class ServiciosPaciente<SQLiteDataBase> {
 
     final String TAG="Tesis";
     private BaseHelper baseHelper;
-
     private SQLiteDatabase sqLiteDatabase;
     private String columnas[]={"idPaciente","nombre","apellido","direccion"};
 

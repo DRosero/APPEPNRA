@@ -10,7 +10,7 @@ import android.util.Log;
  */
 public class BaseHelper extends SQLiteOpenHelper implements TablasBddInterface{
 
-    public static final int DATABASE_VERSION = 1;//version 2015-04-15
+    public static final int DATABASE_VERSION = 2;//version 2015-04-15
     public static final String DATABASE_NAME = "bdtesis.db";
 
     //sentencia para tabla Paciente
@@ -30,6 +30,14 @@ public class BaseHelper extends SQLiteOpenHelper implements TablasBddInterface{
             "direccionTrabajo TEXT NOT NULL,"+
             "prioridadResponsable INTEGER NOT NULL)";
 
+    //sentencia para tabla Sitio
+    String sentCrearSitioConocido="";
+
+    //sentencia para crear Area de Desplazamiento
+    String sentCrearArea="CREATE TABLE"+tablaAreaDesplazamiento+
+            "idArea INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "radio INTEGER NOT NULL";
+
     public BaseHelper(Context context){
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
     }
@@ -38,6 +46,7 @@ public class BaseHelper extends SQLiteOpenHelper implements TablasBddInterface{
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(sentCrearPaciente);
         db.execSQL(sentCrearResponsable);
+        db.execSQL(sentCrearArea);
         //db.execSQL("DROP DATABASE bdtesis");
     }
 
@@ -47,9 +56,9 @@ public class BaseHelper extends SQLiteOpenHelper implements TablasBddInterface{
                 + " to " + newVersion + ", which will destroy all old data");
         db.execSQL("DROP TABLE IF EXISTS "+tablaPaciente);
         db.execSQL("DROP TABLE IF EXISTS "+tablaResponsable);
+        db.execSQL("DROP TABLE IF EXISTS "+tablaAreaDesplazamiento);
         onCreate(db);
     }
-
 
     @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {

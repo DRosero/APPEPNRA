@@ -28,12 +28,6 @@ public class ControladorPaciente extends Activity{
 
     public void irGuardar(Paciente paciente){
 
-        //Paciente paciente=new Paciente();
-
-        /*paciente.setNombre(nombre);
-        paciente.setApellido(apellido);
-        paciente.setDireccion(direccion);*/
-
         paciente.getNombre();
         paciente.getApellido();
         paciente.getDireccion();
