@@ -18,38 +18,38 @@ import java.util.List;
  */
 public class ServiciosPaciente<SQLiteDataBase> {
 
-    final String TAG="Tesis";
+    final String TAG = "Tesis";
     private BaseHelper baseHelper;
     private SQLiteDatabase sqLiteDatabase;
-    private String columnas[]={"idPaciente","nombre","apellido","direccion"};
+    private String columnas[] = {"idPaciente", "nombre", "apellido", "direccion"};
 
     public ServiciosPaciente(Context context) {
-        baseHelper=new BaseHelper(context);
+        baseHelper = new BaseHelper(context);
     }
 
-    public void abrirBD(){
-        sqLiteDatabase=baseHelper.getWritableDatabase();
+    public void abrirBD() {
+        sqLiteDatabase = baseHelper.getWritableDatabase();
     }
 
-    public void cerrarBD(){
+    public void cerrarBD() {
         baseHelper.close();
     }
 
-    public void insertar(Paciente paciente){
-        ContentValues values=new ContentValues();
+    public void insertar(Paciente paciente) {
+        ContentValues values = new ContentValues();
 
-        values.put("nombre",paciente.getNombre());
-        values.put("apellido",paciente.getApellido());
-        values.put("direccion",paciente.getDireccion());
-        sqLiteDatabase.insert("PACIENTE",null,values);
+        values.put("nombre", paciente.getNombre());
+        values.put("apellido", paciente.getApellido());
+        values.put("direccion", paciente.getDireccion());
+        sqLiteDatabase.insert("PACIENTE", null, values);
     }
 
-    public List<Paciente> recuperarTodos(){
-        List<Paciente>pacientes=new ArrayList<Paciente>();
-        Cursor cursor= sqLiteDatabase.query("PACIENTE",columnas,null,null,null,null,null);
+    public List<Paciente> recuperarTodos() {
+        List<Paciente> pacientes = new ArrayList<Paciente>();
+        Cursor cursor = sqLiteDatabase.query("PACIENTE", columnas, null, null, null, null, null);
         cursor.moveToNext();
-        while (!cursor.isAfterLast()){
-            Paciente paciente=new Paciente();
+        while (!cursor.isAfterLast()) {
+            Paciente paciente = new Paciente();
 
             paciente.setIdpaciente(cursor.getInt(0));
             paciente.setNombre(cursor.getString(1));
@@ -62,20 +62,20 @@ public class ServiciosPaciente<SQLiteDataBase> {
         return pacientes;
     }
 
-    public void eliminar(Paciente paciente){
+    public void eliminar(Paciente paciente) {
        /* ContentValues values=new ContentValues();
         values.put("idPaciente",paciente.getIdpaciente());*/
-        sqLiteDatabase.delete("PACIENTE","idPaciente="+paciente.getIdpaciente(),null);
+        sqLiteDatabase.delete("PACIENTE", "idPaciente=" + paciente.getIdpaciente(), null);
     }
 
     public void actualizar(Paciente paciente) {
         abrirBD();
         ContentValues values = new ContentValues();
-        values.put("nombre",paciente.getNombre());
-        values.put("apellido",paciente.getApellido());
-        values.put("direccion",paciente.getDireccion());
+        values.put("nombre", paciente.getNombre());
+        values.put("apellido", paciente.getApellido());
+        values.put("direccion", paciente.getDireccion());
 
-        sqLiteDatabase.update("PACIENTE",values,"idPaciente="+paciente.getIdpaciente(),null);
+        sqLiteDatabase.update("PACIENTE", values, "idPaciente=" + paciente.getIdpaciente(), null);
         cerrarBD();
     }
 

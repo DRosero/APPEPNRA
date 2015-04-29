@@ -6,8 +6,11 @@ package com.example.epn.basehelper;
 public interface TablasBddInterface {
 
     String tablaPaciente = "PACIENTE";
+
     String tablaResponsable = "RESPONSABLE";
+
     String tablaSitioConocido = "SITIOCONOCIDO";
+
     String tablaAreaDesplazamiento= "AREADESPLAZAMIENTO";
 
     //String tablaX = "";

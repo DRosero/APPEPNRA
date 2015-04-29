@@ -21,30 +21,30 @@ public class ServiciosResponsable {
 
     private BaseHelper baseHelper;
     private SQLiteDatabase sqLiteDatabase; //= this.getWritableDatabase;
-    private String columnas[]={"idResponsable","nombreResponsable","telefonoMovil","telefonoFijo","direccionHogar","direccionTrabajo","prioridadResponsable"};
+    private String columnas[] = {"idResponsable", "nombreResponsable", "telefonoMovil", "telefonoFijo", "direccionHogar", "direccionTrabajo", "prioridadResponsable"};
 
-    public ServiciosResponsable(Context contexto){
-        baseHelper=new BaseHelper(contexto);
+    public ServiciosResponsable(Context contexto) {
+        baseHelper = new BaseHelper(contexto);
     }
 
-    public void abrirConexion(){
-        sqLiteDatabase= baseHelper.getWritableDatabase();
+    public void abrirConexion() {
+        sqLiteDatabase = baseHelper.getWritableDatabase();
     }
 
-    public void cerrarConexion(){
+    public void cerrarConexion() {
         baseHelper.close();
     }
 
-    public void insertar(Responsable responsable){
+    public void insertar(Responsable responsable) {
         ContentValues valores = new ContentValues();
-        valores.put("nombreResponsable",responsable.getNombre().toString());
+        valores.put("nombreResponsable", responsable.getNombre().toString());
         valores.put("telefonoMovil", responsable.getTelefonoMovil().toString());
         valores.put("telefonoFijo", responsable.getTelefonoFijo().toString());
-        valores.put("direccionHogar",responsable.getDireccionHogar().toString());
-        valores.put("direccionTrabajo",responsable.getDireccionTrabajo().toString());
+        valores.put("direccionHogar", responsable.getDireccionHogar().toString());
+        valores.put("direccionTrabajo", responsable.getDireccionTrabajo().toString());
         valores.put("prioridadResponsable", responsable.getPrioridadResponsable());
 
-        sqLiteDatabase.insert("RESPONSABLE",null, valores);
+        sqLiteDatabase.insert("RESPONSABLE", null, valores);
     }
 
     public List<Responsable> listarResponsbale() {
@@ -68,16 +68,16 @@ public class ServiciosResponsable {
         return responsables;
     }
 
-    public void actualizar(Responsable responsable){
+    public void actualizar(Responsable responsable) {
         abrirConexion();
 
         ContentValues valores = new ContentValues();
 
-        valores.put("nombreResponsable",responsable.getNombre());
+        valores.put("nombreResponsable", responsable.getNombre());
         valores.put("telefonoMovil", responsable.getTelefonoMovil());
         valores.put("telefonoFijo", responsable.getTelefonoFijo());
-        valores.put("direccionHogar",responsable.getDireccionHogar());
-        valores.put("direccionTrabajo",responsable.getDireccionTrabajo());
+        valores.put("direccionHogar", responsable.getDireccionHogar());
+        valores.put("direccionTrabajo", responsable.getDireccionTrabajo());
         valores.put("prioridadResponsable", responsable.getPrioridadResponsable());
 
         sqLiteDatabase.update("RESPONSABLE", valores, "idResponsable=" + responsable.getIdresponsable(), null);
@@ -85,7 +85,7 @@ public class ServiciosResponsable {
         System.out.println("Responsable Actualizado en ServicioResponsable, OK");
     }
 
-    public void eliminar(Responsable responsable){
+    public void eliminar(Responsable responsable) {
         sqLiteDatabase.delete("RESPONSABLE", "idResponsable=" + responsable.getIdresponsable(), null);
     }
 
