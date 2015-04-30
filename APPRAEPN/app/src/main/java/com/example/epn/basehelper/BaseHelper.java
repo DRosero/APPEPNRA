@@ -38,6 +38,13 @@ public class BaseHelper extends SQLiteOpenHelper implements TablasBddInterface{
             "idArea INTEGER PRIMARY KEY AUTOINCREMENT," +
             "radio INTEGER NOT NULL";
 
+    //sentencia para crear sitio central
+    String sentCrearSitioCentral="CREATE TABLE"+tablaSitioCentral+
+            "idSitioCentral INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "latitud INTEGER NOT NULL"+
+            "longitud INTEGER NOT NULL"+
+            "foto BLOB";
+
     public BaseHelper(Context context){
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
     }
@@ -47,6 +54,7 @@ public class BaseHelper extends SQLiteOpenHelper implements TablasBddInterface{
         db.execSQL(sentCrearPaciente);
         db.execSQL(sentCrearResponsable);
         db.execSQL(sentCrearArea);
+        db.execSQL(sentCrearSitioCentral);
         //db.execSQL("DROP DATABASE bdtesis");
     }
 
@@ -57,6 +65,7 @@ public class BaseHelper extends SQLiteOpenHelper implements TablasBddInterface{
         db.execSQL("DROP TABLE IF EXISTS "+tablaPaciente);
         db.execSQL("DROP TABLE IF EXISTS "+tablaResponsable);
         db.execSQL("DROP TABLE IF EXISTS "+tablaAreaDesplazamiento);
+        db.execSQL("DROP TABLE IF EXISTS "+tablaSitioCentral);
         onCreate(db);
     }
 
