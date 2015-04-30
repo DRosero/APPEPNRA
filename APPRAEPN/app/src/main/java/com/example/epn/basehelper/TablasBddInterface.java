@@ -12,6 +12,7 @@ public interface TablasBddInterface {
     String tablaSitioConocido = "SITIOCONOCIDO";
 
     String tablaAreaDesplazamiento= "AREADESPLAZAMIENTO";
+    String tablaSitioCentral = "SITIOCENTRAL";
 
     //String tablaX = "";
 
