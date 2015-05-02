@@ -41,6 +41,8 @@ public class BaseHelper extends SQLiteOpenHelper implements TablasBddInterface{
     //sentencia para crear sitio central
     String sentCrearSitioCentral="CREATE TABLE "+tablaSitioCentral+
             "(idSitioCentral INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "nombreSitio TEXT NOT NULL"+
+            "descripcionSitio TEXT NOT NULL"+
             "latitud INTEGER NOT NULL,"+
             "longitud INTEGER NOT NULL,"+
             "foto BLOB)";

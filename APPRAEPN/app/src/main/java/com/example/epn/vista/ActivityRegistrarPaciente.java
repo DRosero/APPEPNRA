@@ -74,7 +74,6 @@ public class ActivityRegistrarPaciente extends Activity {
 
         else {
             Toast.makeText(getApplicationContext(), "Nombre, Apellido y Dirección son obligatorios", Toast.LENGTH_SHORT).show();
-
         }
     }
 

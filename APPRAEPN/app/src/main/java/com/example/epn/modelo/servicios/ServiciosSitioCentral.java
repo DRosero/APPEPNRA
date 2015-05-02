@@ -13,11 +13,13 @@ public class ServiciosSitioCentral {
 
     private BaseHelper baseHelper;
     private SQLiteDatabase sqLiteDatabase; //= this.getWritableDatabase;
-    private String columnas[] = {"idSitioCentral", "foto","latitud","longitud"};
+    private String columnas[] = {"idSitioCentral","nombreSitio", "descripcionSitio","latitud","longitud", "foto"};
 
     public void añadirSitio(SitioCentral sitioCentral) {
 
         ContentValues values = new ContentValues();
+        values.put("nombreSitio",sitioCentral.getNombresitio());
+        values.put("descripcionSitio",sitioCentral.getDescripcionSitio());
         values.put("latitud",sitioCentral.getLatitud());
         values.put("longitud",sitioCentral.getLongitud());
         values.put("foto",sitioCentral.getImagen());
