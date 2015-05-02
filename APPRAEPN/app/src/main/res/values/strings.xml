@@ -6,6 +6,11 @@
     <string name="actualizar">Actualizar</string>
     <string name="eliminar">Eliminar</string>
     <string name="prioridad">Asignar Prioridad de Llamada</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+
+
 
 </resources>
 

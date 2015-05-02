@@ -34,16 +34,16 @@ public class BaseHelper extends SQLiteOpenHelper implements TablasBddInterface{
     String sentCrearSitioConocido="";
 
     //sentencia para crear Area de Desplazamiento
-    String sentCrearArea="CREATE TABLE"+tablaAreaDesplazamiento+
-            "idArea INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "radio INTEGER NOT NULL";
+    String sentCrearArea="CREATE TABLE "+tablaAreaDesplazamiento+
+            "(idArea INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "radio INTEGER NOT NULL)";
 
     //sentencia para crear sitio central
-    String sentCrearSitioCentral="CREATE TABLE"+tablaSitioCentral+
-            "idSitioCentral INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "latitud INTEGER NOT NULL"+
-            "longitud INTEGER NOT NULL"+
-            "foto BLOB";
+    String sentCrearSitioCentral="CREATE TABLE "+tablaSitioCentral+
+            "(idSitioCentral INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "latitud INTEGER NOT NULL,"+
+            "longitud INTEGER NOT NULL,"+
+            "foto BLOB)";
 
     public BaseHelper(Context context){
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
