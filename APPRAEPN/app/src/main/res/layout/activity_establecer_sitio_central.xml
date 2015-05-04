@@ -10,7 +10,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:orientation="vertical">
 
         <TextView
@@ -54,6 +53,15 @@
             android:id="@+id/btnDefinirImagenSitio"
             android:layout_weight="1"
             android:onClick="irDefinirImagen"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgView"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
+
+
     </LinearLayout>
 
     <org.osmdroid.views.MapView
@@ -63,6 +71,7 @@
         android:clickable="true"
         android:enabled="true"
         android:layout_below="@+id/searchPanel" />
+
 
 </RelativeLayout>
 
