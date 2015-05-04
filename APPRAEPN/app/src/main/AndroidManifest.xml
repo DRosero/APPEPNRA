@@ -78,6 +78,11 @@
             android:label="@string/app_name" >
         </activity>
 
+        <activity
+            android:name="com.example.epn.vista.ActivityEstablecerImagen"
+            android:label="@string/app_name" >
+        </activity>
+
     </application>
 
 </manifest>
