@@ -10,7 +10,11 @@ import android.util.Log;
  */
 public class BaseHelper extends SQLiteOpenHelper implements TablasBddInterface{
 
+<<<<<<< HEAD
     public static final int DATABASE_VERSION = 3;//version 2015-05-08
+=======
+    public static final int DATABASE_VERSION = 1;//version 2015-04-15
+>>>>>>> origin/Desarrollo
     public static final String DATABASE_NAME = "bdtesis.db";
 
     //sentencia para tabla Paciente
@@ -41,8 +45,8 @@ public class BaseHelper extends SQLiteOpenHelper implements TablasBddInterface{
     //sentencia para crear sitio central
     String sentCrearSitioCentral="CREATE TABLE "+tablaSitioCentral+
             "(idSitioCentral INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "nombreSitio TEXT NOT NULL"+
-            "descripcionSitio TEXT NOT NULL"+
+            "nombreSitio TEXT NOT NULL,"+
+            "descripcionSitio TEXT NOT NULL,"+
             "latitud INTEGER NOT NULL,"+
             "longitud INTEGER NOT NULL,"+
             "foto BLOB)";
