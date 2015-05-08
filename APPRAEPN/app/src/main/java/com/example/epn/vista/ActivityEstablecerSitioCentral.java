@@ -3,7 +3,10 @@ package com.example.epn.vista;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
@@ -12,25 +15,20 @@ import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-
-import com.example.epn.MainActivity;
-import com.example.epn.appraepn.BuildConfig;
 import com.example.epn.appraepn.R;
+import org.osmdroid.DefaultResourceProxyImpl;
+import org.osmdroid.ResourceProxy;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
-import org.osmdroid.util.constants.UtilConstants;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
-import org.osmdroid.views.overlay.MyLocationOverlay;
+import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.SimpleLocationOverlay;
-import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
-
-import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Gabriel on 02/04/2015.
@@ -43,6 +41,7 @@ public class ActivityEstablecerSitioCentral extends Activity{
     private Button btnfoto;
     private LocationManager locationManager;
     MapController mapController;
+    ArrayList<OverlayItem> overlayItemArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,19 +60,25 @@ public class ActivityEstablecerSitioCentral extends Activity{
         SimpleLocationOverlay myLocationOverlay = new SimpleLocationOverlay(this);
         mapView.getOverlays().add(myLocationOverlay);
 
-        /*GeoPoint myLocation = new GeoPoint(getMyLocation());
-        mapController.setCenter(myLocation);
-        myLocationOverlay.setLocation(myLocation);*/
+        //--- Create Overlay
+        overlayItemArray = new ArrayList<OverlayItem>();
+
+        DefaultResourceProxyImpl defaultResourceProxyImpl
+                = new DefaultResourceProxyImpl(this);
+        MyItemizedIconOverlay myItemizedIconOverlay
+                = new MyItemizedIconOverlay(
+                overlayItemArray, null, defaultResourceProxyImpl);
+        mapView.getOverlays().add(myItemizedIconOverlay);
+        //---
 
         locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
 
         //for demo, getLastKnownLocation from GPS only, not from NETWORK
         Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
         if(lastLocation != null){
             updateLoc(lastLocation);
         }
-
-
 
         //mapController.setCenter(myLocation);
         /*GeoPoint geoPoint=new GeoPoint(40.396764,-3.713379);
@@ -91,9 +96,48 @@ public class ActivityEstablecerSitioCentral extends Activity{
         //añadirSitio();
     }
 
-    Location getMyLocation(){
-        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        return locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+    private void setOverlayLoc(Location overlayloc){
+        GeoPoint overlocGeoPoint = new GeoPoint(overlayloc);
+        //---
+        overlayItemArray.clear();
+
+        OverlayItem newMyLocationItem = new OverlayItem(
+                "My Location", "My Location", overlocGeoPoint);
+        overlayItemArray.add(newMyLocationItem);
+        //---
+    }
+
+    private class MyItemizedIconOverlay extends ItemizedIconOverlay<OverlayItem> {
+
+        public MyItemizedIconOverlay(
+                List<OverlayItem> pList,
+                org.osmdroid.views.overlay.ItemizedIconOverlay.OnItemGestureListener<OverlayItem> pOnItemGestureListener,
+                ResourceProxy pResourceProxy) {
+            super(pList, pOnItemGestureListener, pResourceProxy);
+            // TODO Auto-generated constructor stub
+        }
+
+        @Override
+        public void draw(Canvas canvas, MapView mapview, boolean arg2) {
+            // TODO Auto-generated method stub
+            super.draw(canvas, mapview, arg2);
+
+            if (!overlayItemArray.isEmpty()) {
+
+                //overlayItemArray have only ONE element only, so I hard code to get(0)
+                GeoPoint in = overlayItemArray.get(0).getPoint();
+
+                Point out = new Point();
+                mapview.getProjection().toPixels(in, out);
+
+                Bitmap bm = BitmapFactory.decodeResource(getResources(),
+                        R.drawable.ic_menu_mylocation);
+                canvas.drawBitmap(bm,
+                        out.x - bm.getWidth() / 2,  //shift the bitmap center
+                        out.y - bm.getHeight() / 2,  //shift the bitmap center
+                        null);
+            }
+        }
     }
 
 
@@ -149,8 +193,11 @@ public class ActivityEstablecerSitioCentral extends Activity{
     private void updateLoc(Location loc){
         GeoPoint locGeoPoint = new GeoPoint(loc.getLatitude(), loc.getLongitude());
         mapController.setCenter(locGeoPoint);
+
         mapController.setZoom(20);
+        setOverlayLoc(loc);
         mapView.invalidate();
+
     }
 
     private LocationListener myLocationListener
