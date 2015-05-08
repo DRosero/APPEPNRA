@@ -52,13 +52,15 @@ public class ActivityEstablecerSitioCentral extends Activity{
         MapController mapController = (MapController) mapView.getController();
         mapController.setZoom(12);
 
-        GeoPoint myLocation = new GeoPoint(getMyLocation());
+        //GeoPoint myLocation = new GeoPoint(getMyLocation());
 
         SimpleLocationOverlay myLocationOverlay = new SimpleLocationOverlay(this);
         mapView.getOverlays().add(myLocationOverlay);
 
-        mapController.setCenter(myLocation);
-        myLocationOverlay.setLocation(myLocation);
+        //mapController.setCenter(myLocation);
+        GeoPoint geoPoint=new GeoPoint(40.396764,-3.713379);
+        mapController.setCenter(geoPoint);
+        myLocationOverlay.setLocation(geoPoint);
 
         name = Environment.getExternalStorageDirectory() + "/test.jpg";
 
@@ -68,8 +70,6 @@ public class ActivityEstablecerSitioCentral extends Activity{
                 startActivity(new Intent(ActivityEstablecerSitioCentral.this,ActivityEstablecerImagen.class));
             }
         });
-
-
 
         //añadirSitio();
     }
