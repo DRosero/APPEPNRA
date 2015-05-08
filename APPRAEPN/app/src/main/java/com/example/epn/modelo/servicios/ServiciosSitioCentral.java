@@ -19,6 +19,7 @@ public class ServiciosSitioCentral {
 
         ContentValues values = new ContentValues();
         values.put("nombreSitio",sitioCentral.getNombresitio());
+        System.out.println("llegue aqui");
         values.put("descripcionSitio",sitioCentral.getDescripcionSitio());
         values.put("latitud",sitioCentral.getLatitud());
         values.put("longitud",sitioCentral.getLongitud());

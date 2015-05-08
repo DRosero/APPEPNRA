@@ -10,7 +10,7 @@ import android.util.Log;
  */
 public class BaseHelper extends SQLiteOpenHelper implements TablasBddInterface{
 
-    public static final int DATABASE_VERSION = 2;//version 2015-04-15
+    public static final int DATABASE_VERSION = 3;//version 2015-05-08
     public static final String DATABASE_NAME = "bdtesis.db";
 
     //sentencia para tabla Paciente
