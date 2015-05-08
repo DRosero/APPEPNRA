@@ -23,7 +23,7 @@ import java.sql.SQLException;
  */
 public class ActivityRegistrarPaciente extends Activity {
 
-    ControladorPaciente controladorPaciente;
+    //ControladorPaciente controladorPaciente;
     ServiciosPaciente serviciosPaciente;
 
     EditText txtnombre;
@@ -43,7 +43,7 @@ public class ActivityRegistrarPaciente extends Activity {
         txtapellido = (EditText) findViewById(R.id.txtApellidoPaciente);
         txtdireccion = (EditText) findViewById(R.id.txtDireccionPaciente);
 
-        controladorPaciente = new ControladorPaciente(this);
+        //controladorPaciente = new ControladorPaciente(this);
         serviciosPaciente = new ServiciosPaciente(this);
     }
 

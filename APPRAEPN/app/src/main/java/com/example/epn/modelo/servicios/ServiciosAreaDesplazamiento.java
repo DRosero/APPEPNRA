@@ -46,7 +46,7 @@ public class ServiciosAreaDesplazamiento implements ServiciosGenerales, TablasBd
 
         ContentValues valores = new ContentValues();
         valores.put("radio", areaDesplazamiento.getRadio());
-        sqLiteDatabase.insert("", null, valores);
+        sqLiteDatabase.insert("AREADESPLAZAMIENTO", null, valores);
     }
 
     @Override
@@ -56,6 +56,8 @@ public class ServiciosAreaDesplazamiento implements ServiciosGenerales, TablasBd
         Cursor cursor = sqLiteDatabase.query(tablaAreaDesplazamiento, columnas, null, null, null, null, null);
         cursor.moveToNext();
 
+        int contador =0;
+
         while (!cursor.isAfterLast()) {
             AreaDesplazamiento areaDesplazamiento = new AreaDesplazamiento();
 
@@ -64,6 +66,7 @@ public class ServiciosAreaDesplazamiento implements ServiciosGenerales, TablasBd
 
             areaDesplazamientos.add(areaDesplazamiento);
             cursor.moveToNext();
+            contador++;
         }
         return areaDesplazamientos;
     }
@@ -96,6 +99,22 @@ public class ServiciosAreaDesplazamiento implements ServiciosGenerales, TablasBd
             Log.d(TAG, "Saliendo de recuperarArea");
         }
         return cursor;
+    }
+
+    public int conteoRegistros() throws SQLException {
+        int verificador=0;
+        this.abrirConexion();
+        Cursor cursor = sqLiteDatabase.query(tablaAreaDesplazamiento, columnas, null, null, null, null, null);
+        cursor.moveToNext();
+
+        while (!cursor.isAfterLast()) {
+
+            cursor.moveToNext();
+            verificador++;
+        }
+
+        this.cerrarConexion();
+        return verificador;
     }
 
 }
